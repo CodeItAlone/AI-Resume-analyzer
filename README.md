@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Resume Analyzer
 
-## Getting Started
+A Next.js & TypeScript application that provides transparent, factual resume-to-job match scoring and AI-driven analysis.
 
-First, run the development server:
+## Features
+- **Server-Side Text Extraction**: Parses PDF (`pdf2json`) and DOCX (`mammoth`) files cleanly.
+- **LLM Structured Parser**: Extracts structured JSON from resumes and job descriptions using Google Gemini API (`@google/genai`).
+- **Deterministic Pure Scoring Engine**: Calculates objective scores across 4 dimensions:
+  - **Skills Match (40%)**: Required vs preferred skills overlap with basic synonym normalization (e.g. `React.js` == `React`).
+  - **Experience Match (30%)**: Numerical calculation comparing candidate years vs required years.
+  - **Semantic Similarity (20%)**: Vector embeddings cosine similarity.
+  - **Education Match (10%)**: Structured degree level tier comparison.
+- **Factual AI Feedback**: Generates verified strengths, areas for improvement, and non-hallucinated actionable recommendations based strictly on pre-computed scores.
+- **Interactive UI**: Drag-and-drop resume upload, job description input, radial progress indicators, skill breakdown matrix, and feedback cards.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Setup Instructions
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. **Environment Variables**:
+   Create a `.env.local` file in the root directory:
+   ```env
+   GEMINI_API_KEY=your_google_gemini_api_key_here
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. **Run Local Dev Server**:
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. **Production Build**:
+   ```bash
+   npm run build
+   npm run start
+   ```

@@ -1,0 +1,140 @@
+===============================================================================
+                       AI RESUME ANALYZER - ARCHITECTURE SPECIFICATION
+                               "The Editor's Desk"
+===============================================================================
+
+1. OVERVIEW
+-------------------------------------------------------------------------------
+AI Resume Analyzer is a single-session, privacy-first web application designed
+for transparent, objective resume-to-job match scoring. It eliminates AI score
+bias by executing pure deterministic mathematical calculations while using an LLM
+strictly for structured JSON extraction and factual feedback generation.
+
+
+2. SYSTEM FLOW & PIPELINE
+-------------------------------------------------------------------------------
+[ User Input (PDF/DOCX + Job Description) ]
+                  │
+                  ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 1. API Validation & Extraction Layer (app/api/analyze/route.ts)              │
+│    - Validates file type (.pdf, .docx) & max file size (5MB limit)          │
+│    - Server-side text extraction via pdf2json (PDF) & mammoth (DOCX)       │
+└─────────────────────────────────────────────────────────────────────────────┘
+                  │
+                  ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 2. Intelligence & Structured Parsing Layer (lib/ai.ts)                       │
+│    - OpenRouter API (model: nvidia/nemotron-3-nano-30b-a3b:free)             │
+│    - Extracts structured Resume JSON & Job Description JSON                  │
+│    - Computes Joint Vocabulary Term Frequency Cosine Similarity             │
+└─────────────────────────────────────────────────────────────────────────────┘
+                  │
+                  ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 3. Deterministic Pure Scoring Engine (lib/scorer.ts)                        │
+│    - 100% Pure Code (Zero LLM Score Bias)                                    │
+│    - Weighted Formula:                                                       │
+│      Overall Score = (Skills * 0.40) + (Experience * 0.25)                   │
+│                    + (Education * 0.15) + (Semantic * 0.20)                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+                  │
+                  ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 4. Factual LLM Explanation Layer (lib/ai.ts)                                 │
+│    - Consumes pre-computed scores & skill matrices                           │
+│    - Generates verified Strengths, Areas to Improve & Recommendations        │
+└─────────────────────────────────────────────────────────────────────────────┘
+                  │
+                  ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 5. Frontend UI - "The Editor's Desk" (components/ & app/page.tsx)            │
+│    - Asymmetric two-column manuscript layout (70% Document / 30% Margin)    │
+│    - Inline underlines for matched/partial skills directly on resume text    │
+│    - Margin notes for missing skills with open brackets [ ] & leader lines   │
+│    - Physical double-strike score stamp rotated top-right                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+
+3. CORE MODULE RESPONSIBILITIES
+-------------------------------------------------------------------------------
+- app/api/analyze/route.ts
+  Main Next.js serverless API endpoint. Coordinates extraction, parsing,
+  scoring, and response generation.
+
+- lib/extractor.ts
+  Server-side text extraction engine. Runs pdf2json for PDF documents and mammoth
+  for Word documents without browser DOM dependencies.
+
+- lib/ai.ts
+  OpenRouter API integration for structured JSON parsing of resumes & job
+  postings, joint vocabulary vector space creation, and factual feedback generation.
+
+- lib/scorer.ts
+  Pure-function deterministic scoring math. Computes Skills Match (with synonym
+  normalization), Experience Match, Education Match, Semantic Match, and the
+  locked 40/25/15/20 overall score sum.
+
+- lib/types.ts
+  Central TypeScript interface definitions for Resume Data, Job Description Data,
+  Subscores, Skills Matrix Items, and Analysis Response payloads.
+
+- components/ResumeDocument.tsx
+  Main manuscript document view (~70% width). Renders candidate text with inline
+  color-coded skill underlines.
+
+- components/MarginNote.tsx
+  Pinned editor margin notes (~30% width) displaying missing skill callouts,
+  strengths, and revision advice.
+
+- components/ScoreStamp.tsx
+  Double-strike rotated verdict stamp with registration offset layer simulating
+  physical ink stamping.
+
+- components/ProcessingState.tsx
+  Staged processing indicator showing 5 sequential analysis pipeline steps.
+
+
+4. DETAILED SCORING FORMULA
+-------------------------------------------------------------------------------
+- Skills Match (40% Weight):
+  Matches resume skills against required & preferred skills.
+  Exact/synonym match = 100%, Partial match = 50%, Preferred skill bonus up to +15%.
+
+- Experience Match (25% Weight):
+  Ratio of candidate years of experience to job required years.
+
+- Education Match (15% Weight):
+  Hierarchical degree level ranking (High School < Associate < Bachelor's < Master's < PhD).
+
+- Semantic Similarity (20% Weight):
+  Cosine similarity over aligned joint vocabulary term frequencies.
+
+- Overall Score Formula:
+  Score = Math.round(Skills * 0.40 + Experience * 0.25 + Education * 0.15 + Semantic * 0.20)
+
+
+5. DESIGN SYSTEM & TYPOGRAPHY
+-------------------------------------------------------------------------------
+- Palette:
+  Paper Background:    #F7F5F0
+  Ink Body Text:       #1C1B19
+  Matched Underline:   #2F5233 (Forest Green)
+  Partial Underline:   #B8860B (Ochre)
+  Missing Note:        #8B2E2E (Brick Red)
+  Verdict Stamp:       #7A1F1F (Dark Saturated Red)
+
+- Typography Scoping:
+  1. Source Serif 4  -> Candidate Voice (Resume body text, ~70ch measure)
+  2. IBM Plex Mono   -> Machine Voice (Subscores, structured data fields, stamp)
+  3. Margin Italic   -> Editor Voice (Margin callouts, reviewer notes)
+
+
+6. TECHNOLOGY STACK
+-------------------------------------------------------------------------------
+- Framework: Next.js 16 (App Router, TypeScript)
+- Styling: Tailwind CSS v4 + Custom Archival Design Tokens
+- LLM Provider: OpenRouter API (model: nvidia/nemotron-3-nano-30b-a3b:free)
+- Text Extraction: pdf2json & mammoth
+- Fonts: Google Fonts (Source Serif 4, IBM Plex Mono)
+===============================================================================
