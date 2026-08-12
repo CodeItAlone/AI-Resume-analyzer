@@ -131,10 +131,13 @@ export function computeTextSimilarityScore(textA: string, textB: string): number
   return cosineSimilarity(vecA, vecB);
 }
 
+import { callAIClient, AIProviderConfig } from './ai/client';
+
 export async function generateExplanationLayer(
   resume: ResumeData,
   jd: JobDescriptionData,
-  scores: ScoreBreakdown
+  scores: ScoreBreakdown,
+  config?: AIProviderConfig
 ): Promise<ExplanationFeedback> {
   const matchedSkills = scores.skillsMatrix.filter(s => s.status === 'matched').map(s => s.skill);
   const missingSkills = scores.skillsMatrix.filter(s => s.status === 'missing').map(s => s.skill);
@@ -158,8 +161,8 @@ Return ONLY valid JSON matching this schema:
   "recommendations": ["string"]
 }`;
 
-  const jsonStr = await callOpenRouter(prompt);
   try {
+    const jsonStr = await callAIClient(prompt, true, config);
     return JSON.parse(jsonStr) as ExplanationFeedback;
   } catch (err) {
     return {

@@ -110,7 +110,7 @@ export async function POST(req: NextRequest) {
     );
 
     // Fallback legacy explanation check
-    const legacyExplanation = await generateExplanationLayer(candidateProfile, jobRequirementModel, legacyScores);
+    const legacyExplanation = await generateExplanationLayer(candidateProfile, jobRequirementModel, legacyScores, aiConfig);
     logStage('Explanation Engine', Date.now() - t5, 'SUCCESS');
 
     logStage('Total Analysis Pipeline', Date.now() - startTime, 'SUCCESS');
