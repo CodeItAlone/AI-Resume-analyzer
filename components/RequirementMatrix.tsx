@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { RequirementMatch } from '@/lib/types/matching';
-import { CheckCircle2, AlertTriangle, XCircle, FileText, Code } from 'lucide-react';
+import { CheckCircle2, AlertTriangle, XCircle } from 'lucide-react';
 
 interface RequirementMatrixProps {
   matches: RequirementMatch[];

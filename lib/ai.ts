@@ -1,24 +1,21 @@
 import { ResumeData, JobDescriptionData, ExplanationFeedback, ScoreBreakdown } from './types';
 import { cosineSimilarity } from './scorer';
-
-const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY || '';
-const MODEL_NAME = process.env.OPENROUTER_MODEL || 'nvidia/nemotron-3-nano-30b-a3b:free';
+import { getEnvVar } from './env';
 
 async function callOpenRouter(prompt: string, jsonSchemaResponse: boolean = true): Promise<string> {
-  if (!OPENROUTER_API_KEY) {
-    throw new Error('OPENROUTER_API_KEY environment variable is missing.');
-  }
+  const apiKey = getEnvVar('OPENROUTER_API_KEY');
+  const modelName = getEnvVar('OPENROUTER_MODEL', 'nvidia/nemotron-3-nano-30b-a3b:free');
 
   const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+      'Authorization': `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
       'HTTP-Referer': 'http://localhost:3000',
       'X-Title': 'AI Resume Analyzer',
     },
     body: JSON.stringify({
-      model: MODEL_NAME,
+      model: modelName,
       messages: [
         {
           role: 'system',

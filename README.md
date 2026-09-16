@@ -37,3 +37,38 @@ A Next.js & TypeScript application that provides transparent, factual resume-to-
    npm run build
    npm run start
    ```
+
+---
+
+## Pre-deployment checklist
+
+Before any commit is pushed or a PR is merged into `main`, the following 4 automated checks must be run locally and pass with zero errors:
+
+1. **Type Checking**:
+   ```bash
+   npx tsc --noEmit
+   # or
+   npm run typecheck
+   ```
+   *Must exit with code 0 and zero TypeScript compilation errors.*
+
+2. **Linting**:
+   ```bash
+   npm run lint
+   ```
+   *All ESLint errors must be resolved (warnings are acceptable but should be noted in PR descriptions).*
+
+3. **Automated Tests**:
+   ```bash
+   npm test
+   ```
+   *Executes regression tests and scoring logic unit tests.*
+
+4. **Production Build**:
+   ```bash
+   npm run build
+   ```
+   *Validates Next.js compilation, route data collection, and static page generation.*
+
+> 💡 **Note**: A Husky pre-push git hook (`.husky/pre-push`) and GitHub Actions CI workflow (`.github/workflows/ci.yml`) automatically execute these checks on every push and pull request against `main`.
+

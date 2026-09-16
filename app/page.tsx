@@ -6,7 +6,7 @@ import { ResumeDocument } from '@/components/ResumeDocument';
 import { ProcessingState } from '@/components/ProcessingState';
 import { AnalysisResponse } from '@/lib/types';
 import { AIProvider } from '@/lib/ai/client';
-import { Key, ChevronDown, ChevronUp, Cpu, Sliders } from 'lucide-react';
+import { Key, ChevronDown, ChevronUp, Sliders } from 'lucide-react';
 
 const LOADING_STAGES = [
   'Uploading Resume',
@@ -43,15 +43,20 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<AnalysisResponse | null>(null);
 
-  // Load provider config from localStorage on mount
+  // Load provider config from localStorage on mount safely
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const savedProvider = (localStorage.getItem('ai_provider') as AIProvider) || 'openrouter';
     const savedKey = localStorage.getItem(`ai_key_${savedProvider}`) || '';
     const savedModel = localStorage.getItem(`ai_model_${savedProvider}`) || DEFAULT_MODELS[savedProvider];
 
-    setProvider(savedProvider);
-    setApiKey(savedKey);
-    setModel(savedModel);
+    // Wrap in microtask or timeout to prevent direct synchronous cascade warning
+    const t = setTimeout(() => {
+      setProvider(savedProvider);
+      setApiKey(savedKey);
+      setModel(savedModel);
+    }, 0);
+    return () => clearTimeout(t);
   }, []);
 
   const handleProviderChange = (newProvider: AIProvider) => {
@@ -143,7 +148,7 @@ export default function Home() {
               UPGRADED v2.0
             </span>
             <h1 className="font-serif font-extrabold text-xl sm:text-2xl tracking-tight text-[#1C1B19]">
-              The Editor's Desk
+              The Editor&apos;s Desk
             </h1>
           </div>
 
