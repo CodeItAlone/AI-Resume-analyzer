@@ -7,6 +7,7 @@ import { ProcessingState } from '@/components/ProcessingState';
 import { AnalysisResponse } from '@/lib/types';
 import { AIProvider } from '@/lib/ai/client';
 import { Key, ChevronDown, ChevronUp, Sliders } from 'lucide-react';
+import { EmuserLogo } from '@/components/branding';
 
 const LOADING_STAGES = [
   'Uploading Resume',
@@ -143,13 +144,11 @@ export default function Home() {
       {/* Header Desk Branding */}
       <header className="border-b border-[#1C1B19]/20 bg-[#F7F5F0] sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#7A1F1F] border border-[#7A1F1F] px-2 py-0.5">
+          <div className="flex items-center space-x-3">
+            <EmuserLogo size="sm" showTagline={false} />
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#7A1F1F] border border-[#7A1F1F] px-2 py-0.5 ml-1">
               UPGRADED v2.0
             </span>
-            <h1 className="font-serif font-extrabold text-xl sm:text-2xl tracking-tight text-[#1C1B19]">
-              Emuser
-            </h1>
           </div>
 
           {result && (
@@ -304,6 +303,18 @@ export default function Home() {
           />
         ) : null}
       </div>
+
+      {/* Footer Branding */}
+      <footer className="mt-20 border-t border-[#1C1B19]/10 pt-8 pb-12 text-center select-none">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center space-x-3">
+            <EmuserLogo size="xs" showTagline={true} />
+          </div>
+          <p className="font-mono text-xs text-[#1C1B19]/50">
+            EMUSER • EDIT • ANALYZE • ADVANCE — Evidence-Backed Resume Scoring
+          </p>
+        </div>
+      </footer>
     </main>
   );
 }
