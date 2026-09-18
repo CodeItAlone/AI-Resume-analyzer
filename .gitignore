@@ -42,4 +42,7 @@ next-env.d.ts
 
 # agent workspace config
 .agents
-
+graft
+.claude
+.mcp.json
+.ignore
