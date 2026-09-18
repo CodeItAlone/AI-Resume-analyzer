@@ -1,74 +1,291 @@
-# AI Resume Analyzer
+# <p align="center"><img src="./public/emuser-logo.png" alt="EMUSER Logo" width="120" /><br>EMUSER — AI Resume & Job Fit Analyzer</p>
 
-A Next.js & TypeScript application that provides transparent, factual resume-to-job match scoring and AI-driven analysis.
+<p align="center">
+  <strong>EDIT • ANALYZE • ADVANCE</strong><br>
+  <em>Evidence-Backed Manuscript Resume Analysis & Deterministic Scoring Engine</em>
+</p>
 
-## Features
-- **Server-Side Text Extraction**: Parses PDF (`pdf2json`) and DOCX (`mammoth`) files cleanly.
-- **LLM Structured Parser**: Extracts structured JSON from resumes and job descriptions using Google Gemini API (`@google/genai`).
-- **Deterministic Pure Scoring Engine**: Calculates objective scores across 4 dimensions:
-  - **Skills Match (40%)**: Required vs preferred skills overlap with basic synonym normalization (e.g. `React.js` == `React`).
-  - **Experience Match (30%)**: Numerical calculation comparing candidate years vs required years.
-  - **Semantic Similarity (20%)**: Vector embeddings cosine similarity.
-  - **Education Match (10%)**: Structured degree level tier comparison.
-- **Factual AI Feedback**: Generates verified strengths, areas for improvement, and non-hallucinated actionable recommendations based strictly on pre-computed scores.
-- **Interactive UI**: Drag-and-drop resume upload, job description input, radial progress indicators, skill breakdown matrix, and feedback cards.
-
-## Setup Instructions
-
-1. **Environment Variables**:
-   Create a `.env.local` file in the root directory:
-   ```env
-   GEMINI_API_KEY=your_google_gemini_api_key_here
-   ```
-
-2. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
-
-3. **Run Local Dev Server**:
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-4. **Production Build**:
-   ```bash
-   npm run build
-   npm run start
-   ```
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-16.3-black?style=flat-square&logo=next.js" alt="Next.js 16" />
+  <img src="https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react" alt="React 19" />
+  <img src="https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat-square&logo=typescript" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Turbopack-Enabled-0284C7?style=flat-square" alt="Turbopack" />
+  <img src="https://img.shields.io/badge/Zero_AI_Score_Bias-100%25_Deterministic-2F5233?style=flat-square" alt="Deterministic Scoring" />
+</p>
 
 ---
 
-## Pre-deployment checklist
+## 📌 Table of Contents
 
-Before any commit is pushed or a PR is merged into `main`, the following 4 automated checks must be run locally and pass with zero errors:
+- [Overview & Broad Use Cases](#-overview--broad-use-cases)
+- [Key Features & Capabilities](#-key-features--capabilities)
+- [Architecture & Working Mechanism](#-architecture--working-mechanism)
+- [End-to-End Evaluation Pipeline Graph](#-end-to-end-evaluation-pipeline-graph)
+- [Visual Proofs & Workflow Screenshots](#-visual-proofs--workflow-screenshots)
+- [Getting Started & Local Setup](#-getting-started--local-setup)
+- [Where to Get API Keys (Step-by-Step)](#-where-to-get-api-keys-step-by-step)
+- [Deterministic Scoring Methodology](#-deterministic-scoring-methodology)
+- [Contribution Guide](#-contribution-guide)
+- [Quality Assurance & Pre-Push Verification](#-quality-assurance--pre-push-verification)
 
-1. **Type Checking**:
-   ```bash
-   npx tsc --noEmit
-   # or
-   npm run typecheck
-   ```
-   *Must exit with code 0 and zero TypeScript compilation errors.*
+---
 
-2. **Linting**:
-   ```bash
-   npm run lint
-   ```
-   *All ESLint errors must be resolved (warnings are acceptable but should be noted in PR descriptions).*
+## 🌟 Overview & Broad Use Cases
 
-3. **Automated Tests**:
-   ```bash
-   npm test
-   ```
-   *Executes regression tests and scoring logic unit tests.*
+**EMUSER** is a modern, privacy-first web application engineered to eliminate subjective black-box AI score bias. Traditional AI resume scanners hallucinate scores and provide vague feedback. **EMUSER separates structured parsing from mathematical scoring**, executing 100% pure deterministic algorithms over candidate evidence and job requirements.
 
-4. **Production Build**:
-   ```bash
-   npm run build
-   ```
-   *Validates Next.js compilation, route data collection, and static page generation.*
+### Broad Use Cases
 
-> 💡 **Note**: A Husky pre-push git hook (`.husky/pre-push`) and GitHub Actions CI workflow (`.github/workflows/ci.yml`) automatically execute these checks on every push and pull request against `main`.
+1. **For Job Seekers & Candidates**:
+   - Audit resumes against specific job descriptions before submitting applications.
+   - Detect **"Claimed Only"** skills (skills listed in a bulleted skills section that lack corresponding work experience or project evidence).
+   - Receive actionable manuscript revisions and recruiter verdict recommendations without hallucinated feedback.
 
+2. **For Recruiters & Talent Acquisition Teams**:
+   - Standardize candidate qualification scoring across resumes with zero prompt-drift or subjective evaluation bias.
+   - Automatically cross-reference public GitHub profiles for verified open-source repository evidence.
+   - Review transparent multi-dimensional score breakdowns (Job Match, Evidence Strength, Resume Quality, and ATS Compatibility).
+
+3. **For Career Coaches & Universities**:
+   - Provide students and mentees with transparent scoring stamps, marginalia notes, and clear guidance on quantifying accomplishments.
+
+---
+
+## 🚀 Key Features & Capabilities
+
+- **Multi-Provider AI Intelligence**: Seamlessly switch between **OpenRouter**, **Google Gemini**, and **OpenAI** via in-browser configuration or environment fallbacks.
+- **Server-Side Document Text Extraction**: High-fidelity parsing of `.pdf` (via `pdf2json`) and `.docx` (via `mammoth`) documents with strict 5MB limits.
+- **Joint Vocabulary Term Frequency Cosine Similarity**: Mathematical vector similarity matching between resume content and job requirements.
+- **GitHub Public Profile Enrichment**: Optional real-time enrichment resolving public candidate repositories, primary languages, and star metrics.
+- **Evidence-Based Matching Engine**: Classifies every job requirement into `MATCHED`, `CLAIMED_ONLY`, or `MISSING`.
+- **Editorial Manuscript UI**: High-contrast, typography-first manuscript layout featuring inline keyword underlines, bracketed margin notes, and a double-strike physical score stamp.
+
+---
+
+## 🏗️ Architecture & Working Mechanism
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              EMUSER ARCHITECTURE                            │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 1. Ingestion Layer      : app/page.tsx & FileUpload.tsx                     │
+│ 2. API Validation Layer : app/api/analyze/route.ts (5MB max, PDF/DOCX)      │
+│ 3. Text Extraction      : lib/extractor.ts (pdf2json / mammoth)             │
+│ 4. Structured Parsing   : lib/ai/resumeParser.ts & lib/ai/jobParser.ts      │
+│ 5. Evidence Resolution  : lib/evidence/resolver.ts & lib/enrichment/github  │
+│ 6. Pure Scoring Engine  : lib/scoring/rubric.ts & lib/scorer.ts             │
+│ 7. Factual Explanation  : lib/ai/explanation.ts                             │
+│ 8. Manuscript Rendering : components/ResumeDocument.tsx & ScoreStamp.tsx    │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+1. **File Ingestion & Validation**: Validates file integrity, extension, size, and non-empty job descriptions.
+2. **Text Extraction**: Extracts raw document text securely in the server environment.
+3. **Parallel LLM Parsing**: Dispatches asynchronous requests to structure raw resume and job description text into strict JSON models.
+4. **Evidence Collection & Graph Resolution**: Builds an evidence inventory mapping skills to resume bullet points and public GitHub repositories.
+5. **Deterministic Rubric Scoring**: Computes mathematical subscores (Skills Match, Experience Alignment, Education Tier, and Semantic Cosine Similarity).
+6. **Factual Feedback Layer**: LLM consumes **pre-calculated** scores and evidence to generate verified strengths and critical gap summaries.
+
+---
+
+## 📊 End-to-End Evaluation Pipeline Graph
+
+```mermaid
+flowchart TD
+    A[User Uploads Resume & Pastes JD] --> B[Client Ingestion & Provider Settings]
+    B --> C[POST /api/analyze]
+    
+    subgraph Server Pipeline
+        C --> D[Document Extraction: pdf2json / mammoth]
+        D --> E[Parallel AI Structured Extraction]
+        
+        E --> F[Candidate Profile JSON]
+        E --> G[Job Requirements Model JSON]
+        
+        F --> H{GitHub URL Present?}
+        H -- Yes --> I[Fetch GitHub Public Repos]
+        H -- No --> J[Skip Enrichment]
+        
+        I --> K[Resolve Candidate Evidence Graph]
+        J --> K
+        
+        K --> L[Requirement Matcher: Match vs Claimed vs Missing]
+        
+        L --> M[Deterministic Scoring Engine]
+        M --> N[Job Match Score %]
+        M --> O[Evidence Strength Score %]
+        M --> P[Semantic Cosine Similarity %]
+        
+        N & O & P --> Q[Factual Explanation Engine]
+    end
+    
+    Q --> R[Manuscript UI: Resume Document + Marginalia + Score Stamp]
+```
+
+---
+
+## 📸 Visual Proofs & Workflow Screenshots
+
+### 1. Landing Screen & Multi-Provider Settings
+*Configure your preferred AI provider (OpenRouter, Gemini, OpenAI) and model directly in your browser with secure localStorage caching.*
+
+![Landing Page & Settings](./public/screenshots/01-landing-config.png)
+
+---
+
+### 2. Document Upload & Job Description
+*Drag and drop your PDF/DOCX resume (up to 5MB) and paste the target job description.*
+
+![Upload & Input](./public/screenshots/02-upload-input.png)
+
+---
+
+### 3. 11-Stage Staged Pipeline Evaluation
+*Live multi-stage execution progress bar with real-time evidence evaluation stages.*
+
+![Pipeline Overlay](./public/screenshots/03-pipeline-processing.png)
+
+---
+
+### 4. Comprehensive Manuscript Evaluation Report
+*Interactive manuscript view featuring multi-dimensional score breakdown, recruiter executive verdict, inline underlines, missing skill margin notes, and double-strike match stamp.*
+
+![Manuscript Report](./public/screenshots/04-manuscript-report.png)
+
+---
+
+## ⚡ Getting Started & Local Setup
+
+### Prerequisites
+- **Node.js**: `v20.x` or higher
+- **npm** or **pnpm**
+- **Git**
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/CodeItAlone/AI-Resume-analyzer.git
+cd AI-Resume-analyzer
+```
+
+### 2. Install Dependencies
+```bash
+npm install
+```
+
+### 3. Configure Environment Variables
+Create a `.env.local` file in the project root:
+```bash
+cp .env.example .env.local
+```
+
+Populate your `.env.local` with one or more provider keys:
+```env
+# Primary Server-Side Fallback Key (Choose at least one)
+OPENROUTER_API_KEY=your_openrouter_api_key_here
+GEMINI_API_KEY=your_gemini_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here
+
+# Optional Default Model Override
+OPENROUTER_MODEL=nvidia/nemotron-3-nano-30b-a3b:free
+```
+
+### 4. Start Development Server
+```bash
+npm run dev
+```
+Open **[http://localhost:3000](http://localhost:3000)** in your browser.
+
+---
+
+## 🔑 Where to Get API Keys (Step-by-Step)
+
+EMUSER supports multiple AI providers. You only need **one** active key from any of the following providers:
+
+### Option A: OpenRouter (Recommended / Free Models Available)
+1. Navigate to **[OpenRouter.ai](https://openrouter.ai/)**.
+2. Sign in with GitHub, Google, or your email.
+3. Go to **[Keys Settings](https://openrouter.ai/keys)**.
+4. Click **Create Key**, assign a name (e.g., `EMUSER-Dev`), and copy the generated key (starts with `sk-or-v1-...`).
+5. *Tip*: OpenRouter offers zero-cost access to models with `:free` suffixes (such as `nvidia/nemotron-3-nano-30b-a3b:free` or `meta-llama/llama-3.3-70b-instruct:free`).
+
+### Option B: Google Gemini API
+1. Navigate to **[Google AI Studio](https://aistudio.google.com/)**.
+2. Sign in with your Google account.
+3. Click **Get API key** in the top navigation or sidebar.
+4. Click **Create API key in new project** and copy your key.
+5. Paste it as `GEMINI_API_KEY` in `.env.local` or enter it directly in the UI settings.
+
+### Option C: OpenAI API
+1. Navigate to the **[OpenAI API Platform](https://platform.openai.com/api-keys)**.
+2. Sign in or create an OpenAI account.
+3. Select **API Keys** from the dashboard menu.
+4. Click **Create new secret key**, name it, and copy the key (starts with `sk-...`).
+
+---
+
+## 📐 Deterministic Scoring Methodology
+
+The evaluation engine computes scores mathematically using pre-defined rubrics to guarantee deterministic outputs:
+
+$$\text{Overall Score} = (S \times 0.40) + (E \times 0.25) + (\text{Edu} \times 0.15) + (\text{Sim} \times 0.20)$$
+
+| Component | Weight | Metric Calculation |
+| :--- | :---: | :--- |
+| **Skills Match ($S$)** | **40%** | $\frac{\text{Matched Skills} + (0.5 \times \text{Partial Skills})}{\text{Total Required Skills}} \times 100$ |
+| **Experience Match ($E$)** | **25%** | $\min\left(100, \frac{\text{Candidate Experience Years}}{\text{Required Years}} \times 100\right)$ |
+| **Education Alignment ($\text{Edu}$)** | **15%** | Degree Tier comparison (Doctorate: 100%, Master's: 90%, Bachelor's: 80%, Associate: 60%) |
+| **Semantic Similarity ($\text{Sim}$)** | **20%** | Cosine similarity across joint term-frequency vocabulary vectors: $\frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\| \|\mathbf{B}\|}$ |
+
+---
+
+## 🤝 Contribution Guide
+
+We welcome contributions! Please adhere to the following workflow:
+
+### 1. Create a Feature Branch
+```bash
+git checkout -b feat/your-feature-name
+# or
+git checkout -b fix/your-bugfix-name
+```
+
+### 2. Branch Naming Conventions
+- `feat/*`: New features or capabilities
+- `fix/*`: Bug fixes and error resolutions
+- `chore/*`: Documentation, dependencies, or maintenance
+- `refactor/*`: Code refactoring without behavior change
+
+### 3. Commit Guidelines
+Use [Conventional Commits](https://www.conventionalcommits.org/):
+```bash
+git commit -m "feat(scoring): add multi-tier certification matching"
+git commit -m "fix(extractor): handle corrupt pdf stream error"
+```
+
+---
+
+## 🛡️ Quality Assurance & Pre-Push Verification
+
+All commits and Pull Requests are automatically verified by Husky pre-push hooks and GitHub Actions CI (`.github/workflows/ci.yml`).
+
+Before pushing, ensure all 4 automated checks pass locally:
+
+```bash
+# 1. Typecheck
+npm run typecheck
+
+# 2. ESLint
+npm run lint
+
+# 3. Unit & Regression Tests
+npm test
+
+# 4. Production Build Verification
+npm run build
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
