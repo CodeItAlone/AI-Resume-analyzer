@@ -21,11 +21,15 @@ export const metadata: Metadata = {
   description: "Evidence-backed manuscript resume analysis with deterministic scoring, requirement matching, and factual feedback.",
   icons: {
     icon: [
-      { url: '/emuser-icon.png', sizes: '32x32', type: 'image/png' },
-      { url: '/emuser-logo.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/emuser-icon.png', sizes: '192x192', type: 'image/png' },
     ],
+    shortcut: '/favicon.ico',
     apple: [
-      { url: '/emuser-logo.png', sizes: '180x180', type: 'image/png' },
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
   openGraph: {
