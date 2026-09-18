@@ -132,7 +132,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
           {resume.summary && (
             <div>
               <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-[#1C1B19]/60 mb-2">
-                // Candidate Summary
+                {`//`} Candidate Summary
               </h3>
               <p className="text-[#1C1B19] text-base leading-relaxed">
                 {renderAnnotatedText(resume.summary)}
@@ -144,7 +144,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
           {resume.skills && resume.skills.length > 0 && (
             <div>
               <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-[#1C1B19]/60 mb-2">
-                // Demonstrated & Claimed Skills
+                {`//`} Demonstrated &amp; Claimed Skills
               </h3>
               <div className="flex flex-wrap gap-2 text-sm">
                 {resume.skills.map((skill, i) => {
@@ -175,7 +175,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
           {resume.experience && resume.experience.length > 0 && (
             <div className="space-y-6 pt-4">
               <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-[#1C1B19]/60">
-                // Work History ({resume.totalExperienceYears} Years Total)
+                {`//`} Work History ({resume.totalExperienceYears} Years Total)
               </h3>
               {resume.experience.map((exp, i) => (
                 <div key={i} className="border-l-2 border-[#1C1B19]/20 pl-4 space-y-1">
@@ -203,10 +203,10 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
         <div className="md:col-span-4 border-t md:border-t-0 md:border-l border-[#1C1B19]/15 pt-6 md:pt-0 md:pl-6 space-y-6">
           <div className="border-b border-[#1C1B19]/20 pb-2">
             <h3 className="font-serif italic font-bold text-lg text-[#8B2E2E]">
-              Editor's Marginalia
+              Editor&apos;s Marginalia
             </h3>
             <p className="font-mono text-[11px] text-[#1C1B19]/60">
-              Evidence Audit & Gaps
+              Evidence Audit &amp; Gaps
             </p>
           </div>
 
@@ -246,7 +246,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
               <ul className="space-y-2">
                 {explanation.strengths.map((str, idx) => (
                   <li key={idx} className="text-xs font-serif italic text-[#1C1B19]/90 border-l border-[#2F5233] pl-2">
-                    "{str}"
+                    &ldquo;{str}&rdquo;
                   </li>
                 ))}
               </ul>

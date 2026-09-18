@@ -10,6 +10,7 @@ import { computeScores } from '@/lib/scorer';
 import { computeTextSimilarityScore, generateExplanationLayer } from '@/lib/ai';
 import { generateUpgradedExplanation } from '@/lib/ai/explanation';
 import { AnalysisResponse, AuditTrailStage } from '@/lib/types';
+import { resolveApiKey, getEnvVar } from '@/lib/env';
 
 export const maxDuration = 60; // 60s timeout limit
 
@@ -28,8 +29,17 @@ export async function POST(req: NextRequest) {
     const file = formData.get('resume') as File | null;
     const jdText = formData.get('jobDescription') as string | null;
     const provider = (formData.get('provider') as any) || 'openrouter';
-    const apiKey = (formData.get('apiKey') as string | null) || undefined;
+    const rawApiKey = formData.get('apiKey') as string | null;
     const model = (formData.get('model') as string | null) || undefined;
+
+    // Resolve API key with explicit runtime validation (throws descriptive error if missing)
+    const envKeyMap: Record<string, string> = {
+      openrouter: 'OPENROUTER_API_KEY',
+      gemini: 'GEMINI_API_KEY',
+      openai: 'OPENAI_API_KEY',
+    };
+    const targetEnvVar = envKeyMap[provider] || 'OPENROUTER_API_KEY';
+    const apiKey: string = resolveApiKey(rawApiKey, targetEnvVar);
 
     const aiConfig = { provider, apiKey, model };
 

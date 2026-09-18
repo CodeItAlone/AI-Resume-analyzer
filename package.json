@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx tests/regression.test.ts && tsx __tests__/scorer.test.ts",
+    "prepare": "husky"
   },
   "dependencies": {
     "@google/genai": "^2.16.0",
@@ -28,7 +31,9 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.0",
+    "husky": "^9.1.7",
     "tailwindcss": "^4",
+    "tsx": "^4.23.13",
     "typescript": "^5"
   }
 }
