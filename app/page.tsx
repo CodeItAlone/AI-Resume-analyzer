@@ -148,7 +148,7 @@ export default function Home() {
               UPGRADED v2.0
             </span>
             <h1 className="font-serif font-extrabold text-xl sm:text-2xl tracking-tight text-[#1C1B19]">
-              The Editor&apos;s Desk
+              Emuser
             </h1>
           </div>
 

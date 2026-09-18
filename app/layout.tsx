@@ -16,7 +16,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AI Resume Analyzer — The Editor's Desk",
+  title: "AI Resume Analyzer — Emuser",
   description: "Manuscript-style resume analysis with marginalia and stamp scoring",
 };
 

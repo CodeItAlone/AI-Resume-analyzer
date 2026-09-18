@@ -1,6 +1,6 @@
 ===============================================================================
                        AI RESUME ANALYZER - ARCHITECTURE SPECIFICATION
-                               "The Editor's Desk"
+                                "Emuser"
 ===============================================================================
 
 1. OVERVIEW
@@ -48,7 +48,7 @@ strictly for structured JSON extraction and factual feedback generation.
                   │
                   ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ 5. Frontend UI - "The Editor's Desk" (components/ & app/page.tsx)            │
+│ 5. Frontend UI - "Emuser" (components/ & app/page.tsx)                       │
 │    - Asymmetric two-column manuscript layout (70% Document / 30% Margin)    │
 │    - Inline underlines for matched/partial skills directly on resume text    │
 │    - Margin notes for missing skills with open brackets [ ] & leader lines   │
