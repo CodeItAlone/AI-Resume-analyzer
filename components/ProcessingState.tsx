@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { EmuserLogo } from '@/components/branding';
 
 interface ProcessingStateProps {
   currentStageIdx: number;
@@ -26,8 +27,12 @@ export const ProcessingState: React.FC<ProcessingStateProps> = ({
 
       {/* Editor's Desk Staged Pipeline Overlay */}
       <div className="mt-8 border-t-2 border-[#1C1B19] pt-6 flex flex-col items-center text-center">
+        <div className="mb-3">
+          <EmuserLogo variant="mark" withBadge size="md" className="animate-pulse" />
+        </div>
+
         <div className="font-mono text-xs font-bold uppercase tracking-widest text-[#7A1F1F] mb-2">
-          [ ARCHITECTURE PIPELINE — EVIDENCE EVALUATION ]
+          [ EMUSER PIPELINE — EVIDENCE EVALUATION ]
         </div>
 
         <h3 className="font-serif italic text-2xl font-bold text-[#1C1B19] mb-4">
