@@ -2,28 +2,44 @@ import React from 'react';
 import Link from 'next/link';
 import { SiteHeader } from '@/src/components/layout/SiteHeader';
 import { SiteFooter } from '@/src/components/layout/SiteFooter';
+import { EmuserLogo } from '@/components/branding';
 import { FileQuestion, ArrowLeft, Play } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '404 - Document Not Found | EMUSER',
+  description: 'The requested manuscript or analysis route does not exist.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-[#F7F5F0] text-[#1C1B19] font-serif selection:bg-[#7A1F1F] selection:text-white flex flex-col">
       <SiteHeader />
 
-      <main className="flex-1 max-w-3xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-28 flex items-center justify-center">
+      <main className="flex-1 max-w-3xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-24 flex items-center justify-center">
         <div className="w-full border-4 border-[#1C1B19] bg-[#F7F5F0] p-8 sm:p-14 shadow-[8px_8px_0px_#1C1B19] text-center relative">
           
+          {/* Logo Branding */}
+          <div className="flex justify-center mb-6">
+            <EmuserLogo size="md" showTagline={false} />
+          </div>
+
           {/* Top Stamp Tag */}
           <div className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-[#7A1F1F] border border-[#7A1F1F] px-3 py-1 bg-[#7A1F1F]/5 mb-6">
             <FileQuestion className="w-4 h-4 text-[#7A1F1F]" />
             <span>[ 404 • MANUSCRIPT MISSING ]</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-serif font-extrabold text-[#1C1B19] tracking-tight leading-tight mb-4">
+          <h1 className="text-3xl sm:text-5xl font-serif font-extrabold text-[#1C1B19] tracking-tight leading-tight mb-4">
             Document Not Found
           </h1>
 
           <p className="font-serif italic text-base sm:text-lg text-[#1C1B19]/75 max-w-lg mx-auto leading-relaxed mb-8">
-            The manuscript, section, or analysis route you requested does not exist in the editorial archive or may have been relocated.
+            The evaluation document, section, or analysis route you requested does not exist in the editorial archive or may have been relocated.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
@@ -32,7 +48,7 @@ export default function NotFound() {
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-transparent border-2 border-[#1C1B19] text-[#1C1B19] hover:bg-[#1C1B19] hover:text-[#F7F5F0] font-mono text-xs font-bold uppercase tracking-wider transition-colors no-underline"
             >
               <ArrowLeft className="w-4 h-4" />
-              <span>Back to Overview</span>
+              <span>Return to Overview</span>
             </Link>
 
             <Link

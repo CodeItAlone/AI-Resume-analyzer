@@ -14,6 +14,10 @@ const securityHeaders = [
     value: 'strict-origin-when-cross-origin',
   },
   {
+    key: 'X-XSS-Protection',
+    value: '1; mode=block',
+  },
+  {
     key: 'Permissions-Policy',
     value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
   },
@@ -38,6 +42,10 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  reactStrictMode: true,
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
   async headers() {
     return [
       {

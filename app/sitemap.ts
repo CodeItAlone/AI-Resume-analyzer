@@ -1,14 +1,14 @@
 import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://srijalkumar.in';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://emuser.app';
   const currentDate = new Date().toISOString();
 
   return [
     {
       url: baseUrl,
       lastModified: currentDate,
-      changeFrequency: 'daily',
+      changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
