@@ -1,0 +1,32 @@
+:root {
+  /* Paper & Ink Palette */
+  --color-paper: #F7F5F0;
+  --color-paper-subtle: #EFECE6;
+  --color-paper-card: #FFFFFF;
+  --color-ink: #1C1B19;
+  --color-ink-muted: #66635B;
+  --color-ink-faint: #999489;
+  --color-border: #1C1B19;
+  --color-border-subtle: rgba(28, 27, 25, 0.18);
+
+  /* Editorial Accents */
+  --color-oxblood: #7A1F1F;
+  --color-oxblood-light: #9B2C2C;
+  --color-oxblood-bg: rgba(122, 31, 31, 0.06);
+  --color-forest: #2F5233;
+  --color-forest-bg: rgba(47, 82, 51, 0.08);
+  --color-gold: #B8860B;
+  --color-gold-bg: rgba(184, 134, 11, 0.08);
+
+  /* Typography */
+  --font-serif: "Source Serif 4", "Newsreader", Georgia, serif;
+  --font-mono: "IBM Plex Mono", "JetBrains Mono", Menlo, monospace;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Shadows & Layout */
+  --shadow-hard: 3px 3px 0px var(--color-ink);
+  --shadow-hard-lg: 5px 5px 0px var(--color-ink);
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-badge: 12px;
+}
