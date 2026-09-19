@@ -15,9 +15,9 @@ export function SiteFooter() {
 
         <ul className="flex flex-wrap items-center gap-6 font-mono text-xs uppercase tracking-wider text-[#1C1B19]/70">
           <li>
-            <a href="#privacy" className="hover:text-[#7A1F1F] transition-colors">
+            <Link href="/privacy" className="hover:text-[#7A1F1F] transition-colors">
               Privacy
-            </a>
+            </Link>
           </li>
           <li>
             <a href="#privacy" className="hover:text-[#7A1F1F] transition-colors">

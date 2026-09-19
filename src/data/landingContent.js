@@ -117,22 +117,22 @@ export const PRIVACY_BULLETS = [
   {
     title: "In-Memory Document Processing",
     desc: "Resume files are processed in-memory during active sessions to extract structured requirement models.",
-    policyTag: "[TO BE FILLED WITH REAL POLICY]"
+    policyTag: "EPHEMERAL / IN-MEMORY ONLY"
   },
   {
     title: "Zero Permanent Storage",
     desc: "Original uploaded documents are never retained or indexed into persistent databases without explicit user action.",
-    policyTag: "[TO BE FILLED WITH REAL POLICY]"
+    policyTag: "ZERO DISK RETENTION"
   },
   {
     title: "Bring Your Own AI Provider",
     desc: "Connect your own OpenRouter, Google Gemini, or OpenAI API key directly. Keys are stored locally in your browser.",
-    policyTag: "[TO BE FILLED WITH REAL POLICY]"
+    policyTag: "STORED LOCALLY IN BROWSER"
   },
   {
     title: "No Foundation Model Training",
     desc: "Your candidate profile data is strictly evaluated against job descriptions and never used to train third-party LLMs.",
-    policyTag: "[TO BE FILLED WITH REAL POLICY]"
+    policyTag: "NO THIRD-PARTY LLM TRAINING"
   }
 ];
 
