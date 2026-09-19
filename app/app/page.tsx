@@ -326,9 +326,13 @@ export default function WorkspacePage() {
           <div className="flex items-center space-x-3">
             <EmuserLogo size="xs" showTagline={true} />
           </div>
-          <p className="font-mono text-xs text-[#1C1B19]/50">
-            EMUSER • EDIT • ANALYZE • ADVANCE — Evidence-Backed Resume Scoring
-          </p>
+          <div className="flex items-center gap-6 font-mono text-xs text-[#1C1B19]/60">
+            <Link href="/privacy" className="hover:text-[#7A1F1F] transition-colors underline-offset-4 hover:underline">
+              Privacy Policy
+            </Link>
+            <span className="text-[#1C1B19]/30">•</span>
+            <span>EMUSER • EDIT • ANALYZE • ADVANCE</span>
+          </div>
         </div>
       </footer>
     </main>

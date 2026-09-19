@@ -38,8 +38,17 @@ export function PrivacySection() {
           ))}
         </div>
 
-        <div className="text-center mt-10 font-mono text-xs text-[#1C1B19]/60 max-w-xl mx-auto">
-          No third-party tracking, no permanent resume database scraping, and zero marketing spam.
+        <div className="text-center mt-10 font-mono text-xs text-[#1C1B19]/60 max-w-xl mx-auto space-y-3">
+          <p>No third-party tracking, no permanent resume database scraping, and zero marketing spam.</p>
+          <div>
+            <a
+              href="/privacy"
+              className="inline-flex items-center gap-1.5 font-bold text-[#7A1F1F] hover:underline underline-offset-4 uppercase tracking-wider text-[11px]"
+            >
+              <span>Read Full Privacy Policy &amp; Data Governance</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
         </div>
 
       </div>
