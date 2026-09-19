@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { Logo } from '../ui/Logo';
@@ -23,6 +25,19 @@ export function SiteFooter() {
             <Link href="/terms" className="hover:text-[#7A1F1F] transition-colors">
               Terms
             </Link>
+          </li>
+          <li>
+            <button
+              type="button"
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.dispatchEvent(new CustomEvent('open-cookie-settings'));
+                }
+              }}
+              className="hover:text-[#7A1F1F] transition-colors cursor-pointer bg-transparent border-0 p-0 font-mono text-xs uppercase tracking-wider text-[#1C1B19]/70"
+            >
+              Cookies
+            </button>
           </li>
           <li>
             <a href="#faq" className="hover:text-[#7A1F1F] transition-colors">
