@@ -10,15 +10,35 @@ import { computeScores } from '@/lib/scorer';
 import { computeTextSimilarityScore, generateExplanationLayer } from '@/lib/ai';
 import { generateUpgradedExplanation } from '@/lib/ai/explanation';
 import { AnalysisResponse, AuditTrailStage } from '@/lib/types';
-import { resolveApiKey, getEnvVar } from '@/lib/env';
+import { resolveApiKey } from '@/lib/env';
+import { checkRateLimit, extractClientIp } from '@/lib/ratelimit';
 
 export const maxDuration = 60; // 60s timeout limit
 
 const MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024; // 5MB limit
+const MAX_JD_LENGTH = 20000; // 20k character limit
+const MAX_RESUME_TEXT_LENGTH = 30000; // 30k character limit (safe truncation)
 
 export async function POST(req: NextRequest) {
   const startTime = Date.now();
   const auditTrail: AuditTrailStage[] = [];
+
+  // IP Rate Limiting Check (15 requests / minute per IP)
+  const clientIp = extractClientIp(req.headers);
+  const rateLimit = await checkRateLimit(clientIp, 15, 60000);
+  if (!rateLimit.success) {
+    return NextResponse.json(
+      { error: `Too many analysis requests. Please wait ${Math.ceil(rateLimit.resetInMs / 1000)} seconds before trying again.` },
+      {
+        status: 429,
+        headers: {
+          'Retry-After': String(Math.ceil(rateLimit.resetInMs / 1000)),
+          'X-RateLimit-Limit': '15',
+          'X-RateLimit-Remaining': '0',
+        },
+      }
+    );
+  }
 
   const logStage = (stageName: string, durationMs: number, status: 'SUCCESS' | 'WARNING' | 'FAILED', notes?: string) => {
     auditTrail.push({ stageName, timestamp: new Date().toISOString(), durationMs, status, notes });
@@ -65,18 +85,31 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Please provide a non-empty job description.' }, { status: 400 });
     }
 
+    if (jdText.length > MAX_JD_LENGTH) {
+      return NextResponse.json(
+        { error: `Job description exceeds the maximum length of ${MAX_JD_LENGTH.toLocaleString()} characters (received ${jdText.length.toLocaleString()}).` },
+        { status: 400 }
+      );
+    }
+
     // 2. Extract Document Text
     const t0 = Date.now();
     const rawResumeText = await extractTextFromFile(file);
     if (!rawResumeText || rawResumeText.trim().length < 20) {
       return NextResponse.json({ error: 'Could not extract sufficient text from the uploaded document.' }, { status: 400 });
     }
+
+    // Safely truncate resume text if it exceeds MAX_RESUME_TEXT_LENGTH to prevent LLM prompt overflow
+    const safeResumeText = rawResumeText.length > MAX_RESUME_TEXT_LENGTH 
+      ? rawResumeText.slice(0, MAX_RESUME_TEXT_LENGTH)
+      : rawResumeText;
+
     logStage('Document Extraction', Date.now() - t0, 'SUCCESS');
 
     // 3. Parallel AI Candidate & Job Parsing
     const t1 = Date.now();
     const [candidateProfile, jobRequirementModel] = await Promise.all([
-      parseResume(rawResumeText, aiConfig),
+      parseResume(safeResumeText, aiConfig),
       parseJobDescription(jdText, aiConfig),
     ]);
     logStage('Candidate & Job Parsing', Date.now() - t1, 'SUCCESS');
@@ -96,7 +129,7 @@ export async function POST(req: NextRequest) {
 
     // 6. Multi-Dimensional & Backward-Compatible Pure Scoring Engine
     const t4 = Date.now();
-    const semanticSimilarity = computeTextSimilarityScore(rawResumeText, jdText);
+    const semanticSimilarity = computeTextSimilarityScore(safeResumeText, jdText);
     const legacyScores = computeScores(candidateProfile, jobRequirementModel, semanticSimilarity);
 
     const { scores: multiDimensionalScores, evidenceCoverage } = computeMultiDimensionalScores(

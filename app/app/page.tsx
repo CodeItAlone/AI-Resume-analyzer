@@ -25,7 +25,7 @@ const LOADING_STAGES = [
 ];
 
 const DEFAULT_MODELS: Record<AIProvider, string> = {
-  openrouter: 'nvidia/nemotron-3-nano-30b-a3b:free',
+  openrouter: 'meta-llama/llama-3.3-70b-instruct:free',
   gemini: 'gemini-2.5-flash',
   openai: 'gpt-4o-mini',
 };
@@ -78,6 +78,11 @@ export default function WorkspacePage() {
   const handleModelChange = (modelVal: string) => {
     setModel(modelVal);
     localStorage.setItem(`ai_model_${provider}`, modelVal);
+  };
+
+  const handleClearKey = () => {
+    setApiKey('');
+    localStorage.removeItem(`ai_key_${provider}`);
   };
 
   const handleAnalyze = async () => {
@@ -256,9 +261,20 @@ export default function WorkspacePage() {
                       </div>
                     </div>
 
-                    <p className="font-serif italic text-xs text-[#1C1B19]/60">
-                      Settings are stored locally in your browser. Leave API Key blank to use server environment fallback key.
-                    </p>
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pt-1">
+                      <p className="font-serif italic text-xs text-[#1C1B19]/70">
+                        🔒 <span className="font-semibold">Security Note:</span> Custom API keys are stored in this browser only and are never saved or logged on the server. Leave blank to use default fallback.
+                      </p>
+                      {apiKey && (
+                        <button
+                          type="button"
+                          onClick={handleClearKey}
+                          className="text-[11px] font-mono font-semibold text-[#7A1F1F] underline hover:no-underline tracking-wider uppercase"
+                        >
+                          Clear stored key
+                        </button>
+                      )}
+                    </div>
                   </div>
                 )}
               </div>

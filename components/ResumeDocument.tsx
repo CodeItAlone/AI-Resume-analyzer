@@ -70,26 +70,27 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
 
   return (
     <div className="relative w-full max-w-5xl mx-auto bg-[#F7F5F0] border border-[#1C1B19]/20 shadow-xl p-6 sm:p-12 md:p-16 my-8 text-[#1C1B19] rounded-none">
-      {/* Top Right Rotated Score Stamp */}
-      <div className="absolute top-6 right-6 sm:top-10 sm:right-10 z-20">
-        <ScoreStamp score={multiDimensionalScores?.overallEvaluation ?? scores.overallScore} label={scores.matchLabel} />
+      {/* Header Section with Title and Rotated Stamp */}
+      <div className="flex flex-col sm:flex-row justify-between items-start gap-4 border-b-2 border-[#1C1B19] pb-6 mb-8">
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#1C1B19]">
+            {resume.basics?.name || 'Candidate Profile'}
+          </h1>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs text-[#1C1B19]/70 mt-2">
+            {resume.basics?.email && <span>{resume.basics.email}</span>}
+            {resume.basics?.github && <span>• GitHub: {resume.basics.github}</span>}
+            {resume.currentTitle && <span className="font-semibold text-[#1C1B19]">• {resume.currentTitle}</span>}
+          </div>
+        </div>
+        <div className="shrink-0 self-end sm:self-auto">
+          <ScoreStamp score={multiDimensionalScores?.overallEvaluation ?? scores.overallScore} label={scores.matchLabel} />
+        </div>
       </div>
 
       {/* Asymmetric Manuscript Layout Grid */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
         {/* Document Column (~70% / 8 Cols) */}
         <div className="md:col-span-8 space-y-6 font-serif leading-relaxed text-base sm:text-lg max-w-[70ch]">
-          {/* Header Candidate Name */}
-          <div className="border-b-2 border-[#1C1B19] pb-4">
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#1C1B19]">
-              {resume.basics?.name || 'Candidate Profile'}
-            </h1>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs text-[#1C1B19]/70 mt-2">
-              {resume.basics?.email && <span>{resume.basics.email}</span>}
-              {resume.basics?.github && <span>• GitHub: {resume.basics.github}</span>}
-              {resume.currentTitle && <span className="font-semibold text-[#1C1B19]">• {resume.currentTitle}</span>}
-            </div>
-          </div>
 
           {/* Upgraded Multi-Dimensional Score Breakdown */}
           {multiDimensionalScores ? (
@@ -171,6 +172,48 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
             </div>
           )}
 
+          {/* Technical Projects Section */}
+          {resume.projects && resume.projects.length > 0 && (
+            <div className="space-y-6 pt-4">
+              <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-[#1C1B19]/60">
+                {`//`} Technical Projects ({resume.projects.length} Projects)
+              </h3>
+              {resume.projects.map((proj, i) => (
+                <div key={i} className="border-l-2 border-[#1C1B19]/20 pl-4 space-y-1.5">
+                  <div className="flex flex-wrap justify-between items-baseline gap-2">
+                    <h4 className="font-bold text-base text-[#1C1B19]">{proj.name}</h4>
+                    {proj.githubUrl && (
+                      <span className="font-mono text-xs text-[#1C1B19]/60">
+                        {proj.githubUrl}
+                      </span>
+                    )}
+                  </div>
+                  {proj.technologies && proj.technologies.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 py-0.5">
+                      {proj.technologies.map((tech, tIdx) => (
+                        <span key={tIdx} className="font-mono text-[11px] bg-[#1C1B19]/5 px-1.5 py-0.5 border border-[#1C1B19]/15">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  {proj.description && (
+                    <p className="text-sm text-[#1C1B19]/90 leading-relaxed">
+                      {renderAnnotatedText(proj.description)}
+                    </p>
+                  )}
+                  {proj.highlights && proj.highlights.length > 0 && (
+                    <ul className="list-disc list-inside text-sm space-y-1 pt-1 text-[#1C1B19]/90">
+                      {proj.highlights.map((hl, hIdx) => (
+                        <li key={hIdx}>{renderAnnotatedText(hl)}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
           {/* Work Experience */}
           {resume.experience && resume.experience.length > 0 && (
             <div className="space-y-6 pt-4">
@@ -192,6 +235,23 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                         <li key={rIdx}>{renderAnnotatedText(resp)}</li>
                       ))}
                     </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Education Section */}
+          {resume.education && resume.education.length > 0 && (
+            <div className="space-y-4 pt-4 border-t border-[#1C1B19]/10">
+              <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-[#1C1B19]/60">
+                {`//`} Education &amp; Credentials
+              </h3>
+              {resume.education.map((edu, i) => (
+                <div key={i} className="border-l-2 border-[#1C1B19]/20 pl-4">
+                  <h4 className="font-bold text-sm text-[#1C1B19]">{edu.degree}</h4>
+                  {edu.institution && (
+                    <p className="font-mono text-xs text-[#1C1B19]/70">{edu.institution}</p>
                   )}
                 </div>
               ))}
