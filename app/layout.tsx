@@ -87,6 +87,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { CookieConsent } from "@/components/CookieConsent";
+
 export default function RootLayout({
   children,
 }: {
@@ -102,6 +104,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-[#F7F5F0] text-[#1C1B19] font-serif">
         {children}
+        <CookieConsent />
       </body>
     </html>
   );
