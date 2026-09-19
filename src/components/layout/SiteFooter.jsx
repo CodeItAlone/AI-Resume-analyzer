@@ -20,9 +20,9 @@ export function SiteFooter() {
             </Link>
           </li>
           <li>
-            <a href="#privacy" className="hover:text-[#7A1F1F] transition-colors">
+            <Link href="/terms" className="hover:text-[#7A1F1F] transition-colors">
               Terms
-            </a>
+            </Link>
           </li>
           <li>
             <a href="#faq" className="hover:text-[#7A1F1F] transition-colors">
