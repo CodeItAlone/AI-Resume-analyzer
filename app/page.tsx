@@ -6,7 +6,7 @@ import { ResumeDocument } from '@/components/ResumeDocument';
 import { ProcessingState } from '@/components/ProcessingState';
 import { AnalysisResponse } from '@/lib/types';
 import { AIProvider } from '@/lib/ai/client';
-import { Key, ChevronDown, ChevronUp, Sliders } from 'lucide-react';
+import { Key, ChevronDown, ChevronUp, Sliders, CheckCircle2, ShieldCheck, Cpu, FileCheck } from 'lucide-react';
 import { EmuserLogo } from '@/components/branding';
 
 const LOADING_STAGES = [
@@ -51,7 +51,6 @@ export default function Home() {
     const savedKey = localStorage.getItem(`ai_key_${savedProvider}`) || '';
     const savedModel = localStorage.getItem(`ai_model_${savedProvider}`) || DEFAULT_MODELS[savedProvider];
 
-    // Wrap in microtask or timeout to prevent direct synchronous cascade warning
     const t = setTimeout(() => {
       setProvider(savedProvider);
       setApiKey(savedKey);
@@ -140,7 +139,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#F7F5F0] text-[#1C1B19] font-serif selection:bg-[#7A1F1F] selection:text-white pb-24">
+    <div className="min-h-screen bg-[#F7F5F0] text-[#1C1B19] font-serif selection:bg-[#7A1F1F] selection:text-white flex flex-col justify-between">
       {/* Header Desk Branding */}
       <header className="border-b border-[#1C1B19]/20 bg-[#F7F5F0] sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -162,20 +161,20 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 flex-1 w-full">
         {!result && !loading ? (
           /* Manuscript Input Desktop View */
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1C1B19] mb-2">
-                Evidence-Backed Candidate Evaluation
-              </h2>
-              <p className="font-serif italic text-base text-[#1C1B19]/70 max-w-xl mx-auto">
-                Upload your resume and paste the job description. Configure your preferred AI Provider, API Key, and Model below.
+          <div className="max-w-4xl mx-auto space-y-16">
+            <section className="text-center">
+              <h1 className="text-3xl sm:text-5xl font-serif font-bold text-[#1C1B19] mb-4 leading-tight">
+                AI Resume Analyzer &amp; ATS Job Description Matcher
+              </h1>
+              <p className="font-serif italic text-base sm:text-lg text-[#1C1B19]/80 max-w-2xl mx-auto">
+                Objective, evidence-backed candidate evaluation. Upload your resume and paste the job description to inspect your deterministic ATS match score and requirement matrix.
               </p>
-            </div>
+            </section>
 
-            <div className="bg-[#F7F5F0] border-2 border-[#1C1B19] p-6 sm:p-10 shadow-lg space-y-8 rounded-none">
+            <section aria-label="Resume Analysis Input Form" className="bg-[#F7F5F0] border-2 border-[#1C1B19] p-6 sm:p-10 shadow-lg space-y-8 rounded-none">
               {/* Multi-Provider Configuration Box */}
               <div className="border border-[#1C1B19]/20 bg-[#1C1B19]/5 p-4 rounded-none">
                 <button
@@ -261,10 +260,11 @@ export default function Home() {
                 </div>
 
                 <div className="flex flex-col">
-                  <label className="block font-mono text-xs font-bold uppercase tracking-wider text-[#1C1B19] mb-2">
+                  <label htmlFor="jobDescriptionInput" className="block font-mono text-xs font-bold uppercase tracking-wider text-[#1C1B19] mb-2">
                     Paste Job Description <span className="text-[#8B2E2E]">*</span>
                   </label>
                   <textarea
+                    id="jobDescriptionInput"
                     value={jobDescription}
                     onChange={(e) => setJobDescription(e.target.value)}
                     placeholder="Paste the full target job posting requirements and responsibilities here..."
@@ -287,7 +287,51 @@ export default function Home() {
                   Submit Document for Markup
                 </button>
               </div>
-            </div>
+            </section>
+
+            {/* Explainer / SEO Informational Content Blocks */}
+            <section className="border-t-2 border-[#1C1B19]/20 pt-12 space-y-12">
+              <div className="text-center max-w-2xl mx-auto">
+                <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#1C1B19]">
+                  Why EMUSER Evidence-Backed Scoring Works
+                </h2>
+                <p className="font-serif italic text-sm text-[#1C1B19]/70 mt-2">
+                  Traditional ATS resume checkers rely on naive keyword counts. EMUSER matches concrete resume evidence directly against job requirements.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <article className="border border-[#1C1B19]/20 p-6 bg-[#1C1B19]/5 space-y-3">
+                  <div className="flex items-center space-x-2 text-[#7A1F1F]">
+                    <FileCheck className="w-5 h-5" />
+                    <h3 className="font-mono text-xs font-bold uppercase tracking-wider">Deterministic Requirement Matrix</h3>
+                  </div>
+                  <p className="text-xs font-serif leading-relaxed text-[#1C1B19]/80">
+                    Extracts hard qualifications, years of experience, technical stack requirements, and domain knowledge from job descriptions into an evidence matrix.
+                  </p>
+                </article>
+
+                <article className="border border-[#1C1B19]/20 p-6 bg-[#1C1B19]/5 space-y-3">
+                  <div className="flex items-center space-x-2 text-[#7A1F1F]">
+                    <Cpu className="w-5 h-5" />
+                    <h3 className="font-mono text-xs font-bold uppercase tracking-wider">Fact-Grounded Analysis</h3>
+                  </div>
+                  <p className="text-xs font-serif leading-relaxed text-[#1C1B19]/80">
+                    Prevents hallucinated qualifications. Every requirement match requires direct line citation or factual inference from candidate history.
+                  </p>
+                </article>
+
+                <article className="border border-[#1C1B19]/20 p-6 bg-[#1C1B19]/5 space-y-3">
+                  <div className="flex items-center space-x-2 text-[#7A1F1F]">
+                    <ShieldCheck className="w-5 h-5" />
+                    <h3 className="font-mono text-xs font-bold uppercase tracking-wider">100% Privacy Preserved</h3>
+                  </div>
+                  <p className="text-xs font-serif leading-relaxed text-[#1C1B19]/80">
+                    Your candidate resumes and job descriptions are never saved, indexed, or used for AI model training. All evaluation reports remain private.
+                  </p>
+                </article>
+              </div>
+            </section>
           </div>
         ) : loading ? (
           /* Staged Processing Overlay */
@@ -302,19 +346,19 @@ export default function Home() {
             explanation={result.explanation}
           />
         ) : null}
-      </div>
+      </main>
 
       {/* Footer Branding */}
-      <footer className="mt-20 border-t border-[#1C1B19]/10 pt-8 pb-12 text-center select-none">
+      <footer className="border-t border-[#1C1B19]/10 py-8 text-center select-none bg-[#F7F5F0]">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center space-x-3">
             <EmuserLogo size="xs" showTagline={true} />
           </div>
           <p className="font-mono text-xs text-[#1C1B19]/50">
-            EMUSER • EDIT • ANALYZE • ADVANCE — Evidence-Backed Resume Scoring
+            EMUSER • EDIT • ANALYZE • ADVANCE — Evidence-Backed Resume &amp; ATS Scoring
           </p>
         </div>
       </footer>
-    </main>
+    </div>
   );
 }
