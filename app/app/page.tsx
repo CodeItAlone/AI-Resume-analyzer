@@ -326,9 +326,13 @@ export default function WorkspacePage() {
           <div className="flex items-center space-x-3">
             <EmuserLogo size="xs" showTagline={true} />
           </div>
-          <div className="flex items-center gap-6 font-mono text-xs text-[#1C1B19]/60">
+          <div className="flex items-center gap-4 sm:gap-6 font-mono text-xs text-[#1C1B19]/60">
             <Link href="/privacy" className="hover:text-[#7A1F1F] transition-colors underline-offset-4 hover:underline">
-              Privacy Policy
+              Privacy
+            </Link>
+            <span className="text-[#1C1B19]/30">•</span>
+            <Link href="/terms" className="hover:text-[#7A1F1F] transition-colors underline-offset-4 hover:underline">
+              Terms
             </Link>
             <span className="text-[#1C1B19]/30">•</span>
             <span>EMUSER • EDIT • ANALYZE • ADVANCE</span>
