@@ -19,21 +19,21 @@ export function SiteHeader({ className = '' }) {
 
         {/* Center Nav Links */}
         <nav className="hidden md:flex items-center space-x-8 font-mono text-xs font-bold uppercase tracking-wider text-[#1C1B19]/70">
-          <a href="#how-it-works" className="hover:text-[#7A1F1F] transition-colors">
+          <Link href="/#how-it-works" className="hover:text-[#7A1F1F] transition-colors">
             How It Works
-          </a>
-          <a href="#report-showcase" className="hover:text-[#7A1F1F] transition-colors">
+          </Link>
+          <Link href="/#report-showcase" className="hover:text-[#7A1F1F] transition-colors">
             The Report
-          </a>
-          <a href="#evidence-compare" className="hover:text-[#7A1F1F] transition-colors">
+          </Link>
+          <Link href="/#evidence-compare" className="hover:text-[#7A1F1F] transition-colors">
             Evidence
-          </a>
-          <a href="#privacy" className="hover:text-[#7A1F1F] transition-colors">
+          </Link>
+          <Link href="/privacy" className="hover:text-[#7A1F1F] transition-colors">
             Privacy
-          </a>
-          <a href="#faq" className="hover:text-[#7A1F1F] transition-colors">
+          </Link>
+          <Link href="/#faq" className="hover:text-[#7A1F1F] transition-colors">
             FAQ
-          </a>
+          </Link>
         </nav>
 
         {/* Right CTA Button */}
