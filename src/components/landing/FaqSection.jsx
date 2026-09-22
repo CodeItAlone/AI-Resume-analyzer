@@ -11,7 +11,7 @@ export function FaqSection() {
         <SectionMarker
           kicker="TRANSPARENCY FIRST"
           title="Frequently Asked Questions"
-          description="Clear, honest answers about EMUSER's scoring mechanism, supported formats, and AI provider integration."
+          description="Clear, honest answers about Resurox's scoring mechanism, supported formats, and AI provider integration."
           centered={true}
         />
 

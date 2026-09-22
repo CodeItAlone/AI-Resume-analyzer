@@ -1,21 +1,21 @@
 import React from 'react';
 
 export function JsonLd() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://emuser.app';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://resurox.app';
 
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'EMUSER',
+    name: 'Resurox',
     url: baseUrl,
-    logo: `${baseUrl}/emuser-logo.png`,
+    logo: `${baseUrl}/branding/resurox-logo.png`,
     description: 'Evidence-backed candidate evaluation and deterministic resume-vs-job-description scoring.',
   };
 
   const webSiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'EMUSER',
+    name: 'Resurox',
     url: baseUrl,
     potentialAction: {
       '@type': 'SearchAction',
@@ -27,7 +27,7 @@ export function JsonLd() {
   const softwareAppSchema = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'EMUSER',
+    name: 'Resurox',
     operatingSystem: 'All',
     applicationCategory: 'BusinessApplication',
     description: 'Evidence-backed resume analysis with deterministic scoring, requirement matching, and factual feedback.',

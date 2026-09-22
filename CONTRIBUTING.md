@@ -1,6 +1,6 @@
-# Contributing to EMUSER
+# Contributing to Resurox
 
-Thank you for your interest in contributing to **EMUSER (AI Resume & Job Fit Analyzer)**! We welcome contributions to our deterministic evaluation engine, structured parsing layers, and editorial manuscript UI.
+Thank you for your interest in contributing to **Resurox (AI Resume & Job Fit Analyzer)**! We welcome contributions to our deterministic evaluation engine, structured parsing layers, and editorial manuscript UI.
 
 ---
 
@@ -86,3 +86,4 @@ Husky pre-push hooks will run these checks automatically prior to pushing to rem
    ```
 2. Open a Pull Request against the `main` branch.
 3. Provide a clear summary of your changes, what tests were performed, and any visual proof (screenshots or diffs) if applicable.
+

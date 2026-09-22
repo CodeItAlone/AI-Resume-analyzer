@@ -8,11 +8,11 @@ import { APP_URL } from '../../config';
 export function SiteHeader({ className = '' }) {
   return (
     <header className={`border-b border-[#1C1B19]/20 bg-[#F7F5F0] sticky top-0 z-50 ${className}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Left Branding: Logo + Wordmark + Version Badge */}
         <div className="flex items-center space-x-3 sm:space-x-4">
           <Link href="/" className="flex items-center gap-2 text-inherit no-underline">
-            <Logo size={32} showWordmark={true} />
+            <Logo size={72} showWordmark={true} priority={true} />
           </Link>
           <VersionBadge />
         </div>
@@ -30,6 +30,9 @@ export function SiteHeader({ className = '' }) {
           </Link>
           <Link href="/privacy" className="hover:text-[#7A1F1F] transition-colors">
             Privacy
+          </Link>
+          <Link href="/contact" className="hover:text-[#7A1F1F] transition-colors">
+            Contact
           </Link>
           <Link href="/#faq" className="hover:text-[#7A1F1F] transition-colors">
             FAQ

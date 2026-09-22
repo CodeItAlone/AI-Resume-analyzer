@@ -9,7 +9,7 @@ export function EvidenceCompare() {
         <SectionMarker
           kicker="PROOF OVER PROMISES"
           title="Claimed vs. Evidence-Backed"
-          description="How recruiters and EMUSER differentiate between listed buzzwords and demonstrated competencies."
+          description="How recruiters and Resurox differentiate between listed buzzwords and demonstrated competencies."
           centered={true}
         />
 
@@ -63,7 +63,7 @@ export function EvidenceCompare() {
             Same skill. Different weight.
           </p>
           <p className="font-mono text-xs text-[#1C1B19]/60 mt-1 uppercase tracking-wider">
-            EMUSER flags claimed-only skills so you can provide the missing context.
+            Resurox flags claimed-only skills so you can provide the missing context.
           </p>
         </div>
 

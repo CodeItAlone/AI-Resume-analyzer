@@ -36,7 +36,7 @@ export function ProblemSection() {
         {/* Transition Line */}
         <div className="mt-14 text-center">
           <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#7A1F1F] border-b-2 border-[#7A1F1F] pb-1">
-            EMUSER AUDITS THE EVIDENCE &rarr;
+            RESUROX AUDITS THE EVIDENCE &rarr;
           </span>
         </div>
       </div>

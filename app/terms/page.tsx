@@ -6,8 +6,8 @@ import { SiteFooter } from '@/src/components/layout/SiteFooter';
 import { ArrowLeft, CheckCircle2, Ban, AlertTriangle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: "Terms and Conditions — EMUSER",
-  description: "Terms and conditions governing the use of EMUSER's resume analysis workbench, deterministic scoring, and BYO AI provider features.",
+  title: "Terms and Conditions — Resurox",
+  description: "Terms and conditions governing the use of Resurox's resume analysis workbench, deterministic scoring, and BYO AI provider features.",
 };
 
 export default function TermsPage() {
@@ -45,7 +45,7 @@ export default function TermsPage() {
           </h1>
 
           <p className="font-serif italic text-base sm:text-lg text-[#1C1B19]/75 leading-relaxed">
-            Please review these Terms & Conditions (&ldquo;Terms&rdquo;) carefully before using the EMUSER platform, hosted applications, and analysis services operated by Emuser (&ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;).
+            Please review these Terms & Conditions (&ldquo;Terms&rdquo;) carefully before using the Resurox platform, hosted applications, and analysis services operated by Resurox (&ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;).
           </p>
         </header>
 
@@ -57,7 +57,7 @@ export default function TermsPage() {
               Legal Review Notice (Draft Agreement)
             </h2>
             <p className="font-serif text-xs text-[#1C1B19]/80 leading-relaxed">
-              This document is a technical and operational draft representing the current functionality, limitations, and user agreements of the EMUSER service. It is provided for transparency and must be reviewed, adapted, and validated by qualified legal counsel prior to formal corporate or commercial enforcement.
+              This document is a technical and operational draft representing the current functionality, limitations, and user agreements of the Resurox service. It is provided for transparency and must be reviewed, adapted, and validated by qualified legal counsel prior to formal corporate or commercial enforcement.
             </p>
           </div>
         </div>
@@ -74,7 +74,7 @@ export default function TermsPage() {
               </h2>
             </div>
             <p className="font-serif text-sm sm:text-base text-[#1C1B19]/85 leading-relaxed">
-              By accessing, browsing, uploading files to, or otherwise utilizing EMUSER (the &ldquo;Service&rdquo;), you acknowledge that you have read, understood, and agree to be bound by these Terms and our accompanying{' '}
+              By accessing, browsing, uploading files to, or otherwise utilizing Resurox (the &ldquo;Service&rdquo;), you acknowledge that you have read, understood, and agree to be bound by these Terms and our accompanying{' '}
               <Link href="/privacy" className="text-[#7A1F1F] underline font-medium hover:text-[#1C1B19]">
                 Privacy Policy
               </Link>
@@ -91,14 +91,14 @@ export default function TermsPage() {
               </h2>
             </div>
             <p className="font-serif text-sm sm:text-base text-[#1C1B19]/85 leading-relaxed">
-              EMUSER provides an automated candidate evaluation workbench that pairs deterministic rubric-based mathematical scoring with large language model (LLM) semantic extraction. The Service evaluates user-submitted resume files against user-submitted job descriptions to generate score breakdowns, evidence coverage assessments, and recruiter margin notes.
+              Resurox provides an automated candidate evaluation workbench that pairs deterministic rubric-based mathematical scoring with large language model (LLM) semantic extraction. The Service evaluates user-submitted resume files against user-submitted job descriptions to generate score breakdowns, evidence coverage assessments, and recruiter margin notes.
             </p>
             <div className="border border-[#1C1B19]/30 bg-white/40 p-4 space-y-2">
               <div className="font-mono text-xs font-bold uppercase text-[#7A1F1F]">
                 Advisory Disclaimer: No Guarantee of Employment
               </div>
               <p className="font-serif text-xs sm:text-sm text-[#1C1B19]/80 leading-relaxed">
-                The scores, verdicts, and suggestions produced by EMUSER are purely educational and analytical assessments for informational purposes. EMUSER does not make hiring decisions, does not guarantee job interviews, offers, or career outcomes, and cannot guarantee that any prospective employer or automated applicant tracking system (ATS) will reach the same conclusions.
+                The scores, verdicts, and suggestions produced by Resurox are purely educational and analytical assessments for informational purposes. Resurox does not make hiring decisions, does not guarantee job interviews, offers, or career outcomes, and cannot guarantee that any prospective employer or automated applicant tracking system (ATS) will reach the same conclusions.
               </p>
             </div>
           </section>
@@ -152,7 +152,7 @@ export default function TermsPage() {
               </h2>
             </div>
             <p className="font-serif text-sm sm:text-base text-[#1C1B19]/85 leading-relaxed">
-              EMUSER does not require account creation, passwords, or profile registrations. Access is provided on an ephemeral, per-session basis. You are solely responsible for maintaining the confidentiality of any third-party API keys (such as OpenRouter, OpenAI, or Google Gemini keys) entered into your browser.
+              Resurox does not require account creation, passwords, or profile registrations. Access is provided on an ephemeral, per-session basis. You are solely responsible for maintaining the confidentiality of any third-party API keys (such as OpenRouter, OpenAI, or Google Gemini keys) entered into your browser.
             </p>
           </section>
 
@@ -165,10 +165,10 @@ export default function TermsPage() {
               </h2>
             </div>
             <p className="font-serif text-sm sm:text-base text-[#1C1B19]/85 leading-relaxed">
-              <strong>Your Content Remains Yours:</strong> You retain complete ownership and all intellectual property rights to the resume documents, text, and job descriptions you submit to EMUSER. You grant us only the limited, temporary license to process such content in volatile memory for the express purpose of generating your evaluation report.
+              <strong>Your Content Remains Yours:</strong> You retain complete ownership and all intellectual property rights to the resume documents, text, and job descriptions you submit to Resurox. You grant us only the limited, temporary license to process such content in volatile memory for the express purpose of generating your evaluation report.
             </p>
             <p className="font-serif text-sm sm:text-base text-[#1C1B19]/85 leading-relaxed">
-              <strong>EMUSER Intellectual Property:</strong> The software, algorithms, scoring formulas, visual design, editorial markup components, typography layout, and trademarks of EMUSER are the exclusive intellectual property of Emuser and its licensors.
+              <strong>Resurox Intellectual Property:</strong> The software, algorithms, scoring formulas, visual design, editorial markup components, typography layout, and trademarks of Resurox are the exclusive intellectual property of Resurox and its licensors.
             </p>
           </section>
 
@@ -181,7 +181,7 @@ export default function TermsPage() {
               </h2>
             </div>
             <p className="font-serif text-sm sm:text-base text-[#1C1B19]/85 leading-relaxed">
-              EMUSER is currently provided free of charge under a &ldquo;Bring Your Own AI&rdquo; (BYO) model. We do not process payments, bill subscriptions, or charge fees for core workbench analysis. Any usage costs incurred with third-party AI providers (e.g. OpenAI, OpenRouter, Google) via your personal API keys are billed directly by those respective providers under your separate agreement with them.
+              Resurox is currently provided free of charge under a &ldquo;Bring Your Own AI&rdquo; (BYO) model. We do not process payments, bill subscriptions, or charge fees for core workbench analysis. Any usage costs incurred with third-party AI providers (e.g. OpenAI, OpenRouter, Google) via your personal API keys are billed directly by those respective providers under your separate agreement with them.
             </p>
           </section>
 
@@ -198,7 +198,7 @@ export default function TermsPage() {
                 <strong>&ldquo;AS IS&rdquo; AND &ldquo;AS AVAILABLE&rdquo; WARRANTY DISCLAIMER:</strong> THE SERVICE IS PROVIDED ON AN &ldquo;AS IS&rdquo; AND &ldquo;AS AVAILABLE&rdquo; BASIS WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, AND NON-INFRINGEMENT.
               </p>
               <p>
-                <strong>LIMITATION OF LIABILITY:</strong> TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL EMUSER, ITS MAINTAINERS, AFFILIATES, OR LICENSORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR FOR LOSS OF PROFITS, DATA, EMPLOYMENT OPPORTUNITIES, OR BUSINESS REPUTATION, ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF THE SERVICE.
+                <strong>LIMITATION OF LIABILITY:</strong> TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL Resurox, ITS MAINTAINERS, AFFILIATES, OR LICENSORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR FOR LOSS OF PROFITS, DATA, EMPLOYMENT OPPORTUNITIES, OR BUSINESS REPUTATION, ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF THE SERVICE.
               </p>
               <p>
                 TO THE EXTENT PERMITTED BY LAW, OUR TOTAL CUMULATIVE LIABILITY FOR ALL CLAIMS ARISING UNDER THESE TERMS SHALL NOT EXCEED THE GREATER OF FIFTY US DOLLARS ($50.00 USD) OR THE AMOUNT YOU PAID TO US (WHICH IS $0.00).
@@ -228,7 +228,7 @@ export default function TermsPage() {
               </h2>
             </div>
             <p className="font-serif text-sm sm:text-base text-[#1C1B19]/85 leading-relaxed">
-              These Terms and any disputes arising out of or relating to your use of EMUSER shall be governed by and construed in accordance with the laws of <code className="font-mono text-xs bg-[#1C1B19]/10 px-1.5 py-0.5">[COUNTRY / STATE]</code>, without regard to its conflict of law principles. Any legal suit, action, or proceeding shall be instituted exclusively in the competent courts of <code className="font-mono text-xs bg-[#1C1B19]/10 px-1.5 py-0.5">[JURISDICTION / CITY]</code>.
+              These Terms and any disputes arising out of or relating to your use of Resurox shall be governed by and construed in accordance with the laws of <code className="font-mono text-xs bg-[#1C1B19]/10 px-1.5 py-0.5">[COUNTRY / STATE]</code>, without regard to its conflict of law principles. Any legal suit, action, or proceeding shall be instituted exclusively in the competent courts of <code className="font-mono text-xs bg-[#1C1B19]/10 px-1.5 py-0.5">[JURISDICTION / CITY]</code>.
             </p>
           </section>
 
@@ -258,7 +258,8 @@ export default function TermsPage() {
                 If you have questions regarding these Terms or wish to submit legal inquiries, please contact:
               </p>
               <div className="font-mono text-xs space-y-2 text-[#1C1B19]">
-                <div><strong>Entity:</strong> Emuser</div>
+                <div><strong>Entity:</strong> Resurox</div>
+                <div><strong>Location:</strong> Jharkhand, India</div>
                 <div>
                   <strong>Legal Inquiries:</strong>{' '}
                   <a href="mailto:subrato213432@gmail.com" className="text-[#7A1F1F] underline hover:text-[#1C1B19]">
@@ -266,14 +267,20 @@ export default function TermsPage() {
                   </a>
                 </div>
                 <div>
-                  <strong>Website:</strong>{' '}
+                  <strong>Contact Desk:</strong>{' '}
+                  <Link href="/contact" className="text-[#7A1F1F] underline hover:text-[#1C1B19]">
+                    /contact
+                  </Link>
+                </div>
+                <div>
+                  <strong>GitHub Repository:</strong>{' '}
                   <a
-                    href="https://subratokundu.in"
+                    href="https://github.com/Srijal-io/Resurox"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#7A1F1F] underline hover:text-[#1C1B19]"
                   >
-                    subratokundu.in
+                    github.com/Srijal-io/Resurox
                   </a>
                 </div>
               </div>
@@ -287,3 +294,4 @@ export default function TermsPage() {
     </div>
   );
 }
+
