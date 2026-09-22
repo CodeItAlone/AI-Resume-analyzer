@@ -29,7 +29,7 @@ export function Hero({ sample = SAMPLE_REPORT }) {
             </h1>
 
             <p className="font-serif italic text-lg sm:text-xl text-[#1C1B19]/80 leading-relaxed max-w-xl">
-              Upload your resume and a job description. EMUSER checks every claim against evidence and returns a verdict you can act on.
+              Upload your resume and a job description. Resurox checks every claim against evidence and returns a verdict you can act on.
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-4">

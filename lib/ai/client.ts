@@ -123,7 +123,7 @@ export async function callAIClient(
           'Authorization': `Bearer ${customKey}`,
           'Content-Type': 'application/json',
           'HTTP-Referer': 'https://srijalkumar.in',
-          'X-Title': 'EMUSER AI Resume Analyzer',
+          'X-Title': 'Resurox AI Resume Analyzer',
         },
         signal: AbortSignal.timeout(45000),
         body: JSON.stringify({
@@ -147,7 +147,7 @@ export async function callAIClient(
               'Authorization': `Bearer ${customKey}`,
               'Content-Type': 'application/json',
               'HTTP-Referer': 'https://srijalkumar.in',
-              'X-Title': 'EMUSER AI Resume Analyzer',
+              'X-Title': 'Resurox AI Resume Analyzer',
             },
             signal: AbortSignal.timeout(45000),
             body: JSON.stringify({

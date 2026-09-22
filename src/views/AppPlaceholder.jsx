@@ -17,7 +17,7 @@ export function AppPlaceholder() {
             Main App Goes Here
           </h1>
           <p className="font-serif italic text-lg text-[#1C1B19]/70 mb-8 max-w-lg mx-auto">
-            This route is connected to the primary EMUSER evaluation dashboard where document upload and AI settings live.
+            This route is connected to the primary Resurox evaluation dashboard where document upload and AI settings live.
           </p>
           <Button variant="primary" href="/" className="px-8 py-3">
             Back to Landing Page

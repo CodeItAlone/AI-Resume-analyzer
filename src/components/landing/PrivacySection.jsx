@@ -10,7 +10,7 @@ export function PrivacySection() {
         <SectionMarker
           kicker="PRIVACY & INTEGRITY"
           title="Your Resume. Your Data. Your Control."
-          description="EMUSER is built on a 'Bring Your Own AI' architecture. You configure your preferred provider and API key directly in your browser."
+          description="Resurox is built on a 'Bring Your Own AI' architecture. You configure your preferred provider and API key directly in your browser."
           centered={true}
         />
 

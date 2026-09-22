@@ -2,12 +2,12 @@ import React from 'react';
 import Link from 'next/link';
 import { SiteHeader } from '@/src/components/layout/SiteHeader';
 import { SiteFooter } from '@/src/components/layout/SiteFooter';
-import { EmuserLogo } from '@/components/branding';
+import { ResuroxLogo } from '@/components/branding';
 import { FileQuestion, ArrowLeft, Play } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '404 - Document Not Found | EMUSER',
+  title: '404 - Document Not Found | Resurox',
   description: 'The requested manuscript or analysis route does not exist.',
   robots: {
     index: false,
@@ -25,7 +25,7 @@ export default function NotFound() {
           
           {/* Logo Branding */}
           <div className="flex justify-center mb-6">
-            <EmuserLogo size="md" showTagline={false} />
+            <ResuroxLogo size={42} variant="wordmark" showTagline={false} />
           </div>
 
           {/* Top Stamp Tag */}
@@ -61,7 +61,7 @@ export default function NotFound() {
           </div>
 
           <div className="font-mono text-[11px] text-[#1C1B19]/50 mt-10 pt-6 border-t border-[#1C1B19]/15">
-            EMUSER • EDIT • ANALYZE • ADVANCE — Error Reference: ERR_404_PAGE_MISSING
+            Resurox • EDIT • ANALYZE • ADVANCE — Error Reference: ERR_404_PAGE_MISSING
           </div>
 
         </div>

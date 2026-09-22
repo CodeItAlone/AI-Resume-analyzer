@@ -81,7 +81,7 @@ export const HOW_IT_WORKS_STEPS = [
   {
     step: "03",
     title: "Evidence Audit",
-    desc: "EMUSER checks claimed skills against real work history and public GitHub repos."
+    desc: "Resurox checks claimed skills against real work history and public GitHub repos."
   },
   {
     step: "04",
@@ -138,19 +138,19 @@ export const PRIVACY_BULLETS = [
 
 export const FAQ_ITEMS = [
   {
-    question: "What is EMUSER?",
+    question: "What is Resurox?",
     answer:
-      "EMUSER is an evidence-backed candidate evaluation platform. It separates structured parsing from mathematical scoring to deliver 100% deterministic, unbiased resume audits with actionable recruiter marginalia."
+      "Resurox is an evidence-backed candidate evaluation platform. It separates structured parsing from mathematical scoring to deliver 100% deterministic, unbiased resume audits with actionable recruiter marginalia."
   },
   {
-    question: "Is EMUSER free to use?",
+    question: "Is Resurox free to use?",
     answer:
-      "Yes. EMUSER is open-source and supports zero-cost open models via OpenRouter (e.g. Nemotron, Llama) as well as direct Google Gemini and OpenAI developer API keys."
+      "Yes. Resurox is open-source and supports zero-cost open models via OpenRouter (e.g. Nemotron, Llama) as well as direct Google Gemini and OpenAI developer API keys."
   },
   {
     question: "Which file formats and sizes are supported?",
     answer:
-      "EMUSER supports PDF (.pdf) and Microsoft Word (.docx) documents up to a maximum file size of 5MB."
+      "Resurox supports PDF (.pdf) and Microsoft Word (.docx) documents up to a maximum file size of 5MB."
   },
   {
     question: "Which AI providers can I configure?",
@@ -160,11 +160,11 @@ export const FAQ_ITEMS = [
   {
     question: "Does it replace a professional human recruiter?",
     answer:
-      "No. EMUSER is designed as an automated structural and evidence audit tool. While it catches evidence gaps, ATS blockers, and keyword discrepancies, human mentors provide qualitative career context."
+      "No. Resurox is designed as an automated structural and evidence audit tool. While it catches evidence gaps, ATS blockers, and keyword discrepancies, human mentors provide qualitative career context."
   },
   {
-    question: "Does EMUSER guarantee interviews?",
+    question: "Does Resurox guarantee interviews?",
     answer:
-      "No. EMUSER helps you strengthen your resume. It cannot guarantee interviews, jobs, or recruiter responses, as hiring decisions depend on recruiter discretion, market demand, and overall competition."
+      "No. Resurox helps you strengthen your resume. It cannot guarantee interviews, jobs, or recruiter responses, as hiring decisions depend on recruiter discretion, market demand, and overall competition."
   }
 ];

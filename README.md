@@ -1,4 +1,4 @@
-# <p align="center"><img src="./public/emuser-logo.png" alt="EMUSER Logo" width="120" /><br>EMUSER — AI Resume & Job Fit Analyzer</p>
+# <p align="center"><img src="./public/branding/resurox-logo.png" alt="Resurox Logo" width="120" /><br>Resurox — AI Resume & Job Fit Analyzer</p>
 
 <p align="center">
   <strong>EDIT • ANALYZE • ADVANCE</strong><br>
@@ -32,7 +32,7 @@
 
 ## 🌟 Overview & Broad Use Cases
 
-**EMUSER** is a modern, privacy-first web application engineered to eliminate subjective black-box AI score bias. Traditional AI resume scanners hallucinate scores and provide vague feedback. **EMUSER separates structured parsing from mathematical scoring**, executing 100% pure deterministic algorithms over candidate evidence and job requirements.
+**Resurox** is a modern, privacy-first web application engineered to eliminate subjective black-box AI score bias. Traditional AI resume scanners hallucinate scores and provide vague feedback. **Resurox separates structured parsing from mathematical scoring**, executing 100% pure deterministic algorithms over candidate evidence and job requirements.
 
 ### Broad Use Cases
 
@@ -66,7 +66,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                              EMUSER ARCHITECTURE                            │
+│                              Resurox ARCHITECTURE                            │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │ 1. Ingestion Layer      : app/page.tsx & FileUpload.tsx                     │
 │ 2. API Validation Layer : app/api/analyze/route.ts (5MB max, PDF/DOCX)      │
@@ -199,13 +199,13 @@ Open **[http://localhost:3000](http://localhost:3000)** in your browser.
 
 ## 🔑 Where to Get API Keys (Step-by-Step)
 
-EMUSER supports multiple AI providers. You only need **one** active key from any of the following providers:
+Resurox supports multiple AI providers. You only need **one** active key from any of the following providers:
 
 ### Option A: OpenRouter (Recommended / Free Models Available)
 1. Navigate to **[OpenRouter.ai](https://openrouter.ai/)**.
 2. Sign in with GitHub, Google, or your email.
 3. Go to **[Keys Settings](https://openrouter.ai/keys)**.
-4. Click **Create Key**, assign a name (e.g., `EMUSER-Dev`), and copy the generated key (starts with `sk-or-v1-...`).
+4. Click **Create Key**, assign a name (e.g., `Resurox-Dev`), and copy the generated key (starts with `sk-or-v1-...`).
 5. *Tip*: OpenRouter offers zero-cost access to models with `:free` suffixes (such as `nvidia/nemotron-3-nano-30b-a3b:free` or `meta-llama/llama-3.3-70b-instruct:free`).
 
 ### Option B: Google Gemini API
@@ -289,3 +289,4 @@ npm run build
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
+

@@ -6,8 +6,8 @@ import { SiteFooter } from '@/src/components/layout/SiteFooter';
 import { ArrowLeft, FileText, Database, Key, ExternalLink, AlertTriangle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — EMUSER",
-  description: "Learn how EMUSER handles resume uploads, in-memory processing, BYO AI providers, and local browser storage.",
+  title: "Privacy Policy — Resurox",
+  description: "Learn how Resurox handles resume uploads, in-memory processing, BYO AI providers, and local browser storage.",
 };
 
 export default function PrivacyPage() {
@@ -45,7 +45,7 @@ export default function PrivacyPage() {
           </h1>
 
           <p className="font-serif italic text-base sm:text-lg text-[#1C1B19]/75 leading-relaxed">
-            Transparent disclosure of how Emuser (&ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;) processes resume documents, manages AI provider interactions, and safeguards user data.
+            Transparent disclosure of how Resurox (&ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;) processes resume documents, manages AI provider interactions, and safeguards user data.
           </p>
         </header>
 
@@ -57,7 +57,7 @@ export default function PrivacyPage() {
               Legal Review Notice (Draft Document)
             </h2>
             <p className="font-serif text-xs text-[#1C1B19]/80 leading-relaxed">
-              This document is a technical draft outlining the actual operational data flows and architecture of the EMUSER application. It is provided for informational transparency and must undergo formal legal review and customization by qualified legal counsel prior to formal corporate adoption.
+              This document is a technical draft outlining the actual operational data flows and architecture of the Resurox application. It is provided for informational transparency and must undergo formal legal review and customization by qualified legal counsel prior to formal corporate adoption.
             </p>
           </div>
         </div>
@@ -74,7 +74,7 @@ export default function PrivacyPage() {
               </h2>
             </div>
             <p className="font-serif text-sm sm:text-base text-[#1C1B19]/85 leading-relaxed">
-              EMUSER is architected as an on-demand, session-based manuscript evaluation engine. We believe your career documentation and resume contents belong exclusively to you. The application operates without user registration, accounts, or persistent cloud databases for document storage.
+              Resurox is architected as an on-demand, session-based manuscript evaluation engine. We believe your career documentation and resume contents belong exclusively to you. The application operates without user registration, accounts, or persistent cloud databases for document storage.
             </p>
           </section>
 
@@ -179,7 +179,7 @@ export default function PrivacyPage() {
               </h2>
             </div>
             <p className="font-serif text-sm sm:text-base text-[#1C1B19]/85 leading-relaxed">
-              To provide semantic parsing and natural language explanations, EMUSER interfaces with the following third-party APIs during the active analysis request:
+              To provide semantic parsing and natural language explanations, Resurox interfaces with the following third-party APIs during the active analysis request:
             </p>
 
             <div className="overflow-x-auto border border-[#1C1B19]/30 mt-3">
@@ -219,7 +219,7 @@ export default function PrivacyPage() {
               </h2>
             </div>
             <p className="font-serif text-sm sm:text-base text-[#1C1B19]/85 leading-relaxed">
-              <strong>No Tracking Cookies:</strong> EMUSER does not set marketing cookies, third-party advertising beacons, cross-site trackers, or commercial tracking scripts.
+              <strong>No Tracking Cookies:</strong> Resurox does not set marketing cookies, third-party advertising beacons, cross-site trackers, or commercial tracking scripts.
             </p>
             <p className="font-serif text-sm sm:text-base text-[#1C1B19]/85 leading-relaxed">
               <strong>Local Storage:</strong> We use standard browser <code className="font-mono text-xs bg-[#1C1B19]/10 px-1.5 py-0.5">localStorage</code> strictly for functional client-side preferences (such as remembering your chosen AI provider, model preference, and API key).
@@ -253,7 +253,7 @@ export default function PrivacyPage() {
               </h2>
             </div>
             <p className="font-serif text-sm sm:text-base text-[#1C1B19]/85 leading-relaxed">
-              EMUSER is a career and resume evaluation service designed for working professionals, job seekers, and adult students. We do not knowingly collect, solicit, or maintain personal information from children under the age of 16 (or under 13 where mandated by local law). If you believe a minor has submitted personal information, please contact us immediately for assistance.
+              Resurox is a career and resume evaluation service designed for working professionals, job seekers, and adult students. We do not knowingly collect, solicit, or maintain personal information from children under the age of 16 (or under 13 where mandated by local law). If you believe a minor has submitted personal information, please contact us immediately for assistance.
             </p>
           </section>
 
@@ -283,7 +283,8 @@ export default function PrivacyPage() {
                 If you have questions, feedback, or concerns regarding this Privacy Policy or our operational data handling practices, please contact us at:
               </p>
               <div className="font-mono text-xs space-y-2 text-[#1C1B19]">
-                <div><strong>Entity:</strong> Emuser</div>
+                <div><strong>Entity:</strong> Resurox</div>
+                <div><strong>Location:</strong> Jharkhand, India</div>
                 <div>
                   <strong>Privacy Contact:</strong>{' '}
                   <a href="mailto:subrato213432@gmail.com" className="text-[#7A1F1F] underline hover:text-[#1C1B19]">
@@ -291,14 +292,20 @@ export default function PrivacyPage() {
                   </a>
                 </div>
                 <div>
-                  <strong>Website:</strong>{' '}
+                  <strong>Contact Desk:</strong>{' '}
+                  <Link href="/contact" className="text-[#7A1F1F] underline hover:text-[#1C1B19]">
+                    /contact
+                  </Link>
+                </div>
+                <div>
+                  <strong>GitHub Repository:</strong>{' '}
                   <a
-                    href="https://subratokundu.in"
+                    href="https://github.com/Srijal-io/Resurox"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#7A1F1F] underline hover:text-[#1C1B19]"
                   >
-                    subratokundu.in
+                    github.com/Srijal-io/Resurox
                   </a>
                 </div>
               </div>
@@ -312,3 +319,4 @@ export default function PrivacyPage() {
     </div>
   );
 }
+

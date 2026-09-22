@@ -16,7 +16,7 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://emuser.app';
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://resurox.app';
 
 export const viewport: Viewport = {
   themeColor: "#F7F5F0",
@@ -27,8 +27,8 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "EMUSER — AI Resume Analyzer & ATS Job Description Matcher",
-    template: "%s | EMUSER",
+    default: "Resurox — AI Resume Analyzer & ATS Job Description Matcher",
+    template: "%s | Resurox",
   },
   description: "Evidence-backed resume analysis tool with deterministic scoring, requirement matrix matching, and factual ATS candidate feedback.",
   keywords: [
@@ -36,13 +36,13 @@ export const metadata: Metadata = {
     "ATS resume checker",
     "resume vs job description match",
     "resume feedback tool",
-    "EMUSER",
+    "Resurox",
     "AI candidate evaluation",
     "deterministic resume scoring",
   ],
-  authors: [{ name: "EMUSER Team", url: baseUrl }],
-  creator: "EMUSER",
-  publisher: "EMUSER",
+  authors: [{ name: "Resurox Team", url: baseUrl }],
+  creator: "Resurox",
+  publisher: "Resurox",
   alternates: {
     canonical: baseUrl,
   },
@@ -60,10 +60,8 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/emuser-icon.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon.png', sizes: 'any', type: 'image/png' },
+      { url: '/branding/resurox-mark.png', sizes: '192x192', type: 'image/png' },
     ],
     shortcut: '/favicon.ico',
     apple: [
@@ -74,16 +72,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: baseUrl,
-    siteName: "EMUSER",
-    title: "EMUSER — AI Resume & Job Fit Analyzer",
-    description: "Edit • Analyze • Advance — Objective, evidence-backed candidate evaluation and ATS job match.",
-    images: [{ url: '/emuser-logo.png', width: 1024, height: 1024, alt: 'EMUSER Logo' }],
+    siteName: "Resurox",
+    title: "Resurox — AI Resume & Job Fit Analyzer",
+    description: "EDIT • ANALYZE • ADVANCE — Objective, evidence-backed candidate evaluation and ATS job match.",
+    images: [{ url: '/branding/resurox-logo.png', width: 1024, height: 1024, alt: 'Resurox Logo' }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "EMUSER — AI Resume & Job Fit Analyzer",
+    title: "Resurox — AI Resume & Job Fit Analyzer",
     description: "Evidence-backed manuscript resume analysis with deterministic scoring and requirement matching.",
-    images: ['/emuser-logo.png'],
+    images: ['/branding/resurox-logo.png'],
   },
 };
 

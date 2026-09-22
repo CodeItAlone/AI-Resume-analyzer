@@ -115,7 +115,7 @@ export function CookieConsent() {
             </div>
 
             <p className="font-serif text-xs sm:text-sm text-[#1C1B19]/85 leading-relaxed mb-4">
-              EMUSER processes resume documents strictly in volatile memory. We use essential local browser storage to remember your chosen AI provider and optional API keys. Non-essential tracking scripts are blocked by default.
+              Resurox processes resume documents strictly in volatile memory. We use essential local browser storage to remember your chosen AI provider and optional API keys. Non-essential tracking scripts are blocked by default.
             </p>
 
             <div className="flex flex-wrap items-center gap-2 mb-3">
@@ -195,7 +195,7 @@ export function CookieConsent() {
               id="cookie-modal-desc"
               className="font-serif text-xs sm:text-sm text-[#1C1B19]/80 leading-relaxed"
             >
-              Control how EMUSER stores data in your browser. Essential items are strictly necessary for core analysis and AI key persistence. Non-essential categories require explicit consent.
+              Control how Resurox stores data in your browser. Essential items are strictly necessary for core analysis and AI key persistence. Non-essential categories require explicit consent.
             </p>
 
             {/* Storage Toggles */}

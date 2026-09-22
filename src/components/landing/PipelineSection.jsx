@@ -33,7 +33,7 @@ export function PipelineSection() {
         <SectionMarker
           kicker="THE 11-STAGE PIPELINE"
           title="From Raw Document to Marked-Up Verdict"
-          description="How EMUSER transforms unparsed resumes into evidence-audited candidate evaluations."
+          description="How Resurox transforms unparsed resumes into evidence-audited candidate evaluations."
           centered={true}
         />
 

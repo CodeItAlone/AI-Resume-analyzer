@@ -24,7 +24,7 @@ export function FinalCta() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button variant="primary" href={APP_URL} className="px-10 py-4 text-sm font-black">
-              TRY EMUSER NOW
+              TRY RESUROX NOW
             </Button>
           </div>
 

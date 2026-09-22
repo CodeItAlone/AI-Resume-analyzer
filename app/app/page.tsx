@@ -7,7 +7,7 @@ import { ProcessingState } from '@/components/ProcessingState';
 import { AnalysisResponse } from '@/lib/types';
 import { AIProvider } from '@/lib/ai/client';
 import { ChevronDown, ChevronUp, Sliders, ArrowLeft } from 'lucide-react';
-import { EmuserLogo } from '@/components/branding';
+import { ResuroxLogo } from '@/components/branding';
 import Link from 'next/link';
 
 const LOADING_STAGES = [
@@ -155,7 +155,7 @@ export default function WorkspacePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center no-underline">
-              <EmuserLogo size="sm" showTagline={false} />
+              <ResuroxLogo size={46} variant="mark" showTagline={false} />
             </Link>
             <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#7A1F1F] border border-[#7A1F1F] px-2 py-0.5 ml-1">
               UPGRADED v2.0
@@ -340,7 +340,7 @@ export default function WorkspacePage() {
       <footer className="mt-20 border-t border-[#1C1B19]/10 pt-8 pb-12 text-center select-none">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center space-x-3">
-            <EmuserLogo size="xs" showTagline={true} />
+            <ResuroxLogo size={36} variant="mark" showTagline={false} />
           </div>
           <div className="flex items-center gap-3 sm:gap-5 font-mono text-xs text-[#1C1B19]/60">
             <Link href="/privacy" className="hover:text-[#7A1F1F] transition-colors underline-offset-4 hover:underline">
@@ -363,7 +363,7 @@ export default function WorkspacePage() {
               Cookies
             </button>
             <span className="text-[#1C1B19]/30">•</span>
-            <span>EMUSER • EDIT • ANALYZE • ADVANCE</span>
+            <span>Resurox • EDIT • ANALYZE • ADVANCE</span>
           </div>
         </div>
       </footer>

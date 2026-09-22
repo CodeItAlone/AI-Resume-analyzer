@@ -9,9 +9,9 @@ export function SiteFooter() {
     <footer className="border-t border-[#1C1B19]/20 bg-[#F7F5F0] py-12 select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center space-x-3">
-          <Logo size={28} showWordmark={true} />
+          <Logo size={57} showWordmark={true} />
           <span className="font-mono text-xs text-[#1C1B19]/50 pl-2 border-l border-[#1C1B19]/20">
-            EMUSER v2.0 • Editorial Manuscript Resume Intelligence
+            Resurox v2.0 • EDIT • ANALYZE • ADVANCE
           </span>
         </div>
 
@@ -40,9 +40,9 @@ export function SiteFooter() {
             </button>
           </li>
           <li>
-            <a href="#faq" className="hover:text-[#7A1F1F] transition-colors">
+            <Link href="/contact" className="hover:text-[#7A1F1F] transition-colors">
               Contact
-            </a>
+            </Link>
           </li>
           <li>
             <Link href="/" className="hover:text-[#7A1F1F] transition-colors">
@@ -52,7 +52,7 @@ export function SiteFooter() {
         </ul>
 
         <div className="font-mono text-xs text-[#1C1B19]/50">
-          &copy; {new Date().getFullYear()} EMUSER. All rights reserved.
+          &copy; {new Date().getFullYear()} Resurox. All rights reserved.
         </div>
       </div>
     </footer>
