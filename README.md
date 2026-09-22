@@ -1,4 +1,4 @@
-# <p align="center"><img src="./public/branding/resurox-logo.png" alt="Resurox Logo" width="120" /><br>Resurox — AI Resume & Job Fit Analyzer</p>
+# <p align="center"><img src="./public/branding/resurox-logo.png" alt="Resurox Logo" width="220" /><br>Resurox — AI Resume & Job Fit Analyzer</p>
 
 <p align="center">
   <strong>EDIT • ANALYZE • ADVANCE</strong><br>
@@ -25,8 +25,11 @@
 - [Getting Started & Local Setup](#-getting-started--local-setup)
 - [Where to Get API Keys (Step-by-Step)](#-where-to-get-api-keys-step-by-step)
 - [Deterministic Scoring Methodology](#-deterministic-scoring-methodology)
+- [Pages & Site Structure](#-pages--site-structure)
+- [Contact & Support](#-contact--support)
 - [Contribution Guide](#-contribution-guide)
 - [Quality Assurance & Pre-Push Verification](#-quality-assurance--pre-push-verification)
+- [Maintainers & Credits](#-maintainers--credits)
 
 ---
 
@@ -59,6 +62,7 @@
 - **GitHub Public Profile Enrichment**: Optional real-time enrichment resolving public candidate repositories, primary languages, and star metrics.
 - **Evidence-Based Matching Engine**: Classifies every job requirement into `MATCHED`, `CLAIMED_ONLY`, or `MISSING`.
 - **Editorial Manuscript UI**: High-contrast, typography-first manuscript layout featuring inline keyword underlines, bracketed margin notes, and a double-strike physical score stamp.
+- **Dynamic SEO & Sitemap**: Built-in dynamic sitemap generation at `/sitemap.xml` and robots metadata.
 
 ---
 
@@ -163,8 +167,8 @@ flowchart TD
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/CodeItAlone/AI-Resume-analyzer.git
-cd AI-Resume-analyzer
+git clone https://github.com/Srijal-io/Resurox.git
+cd Resurox
 ```
 
 ### 2. Install Dependencies
@@ -180,6 +184,9 @@ cp .env.example .env.local
 
 Populate your `.env.local` with one or more provider keys:
 ```env
+# Base Application URL
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+
 # Primary Server-Side Fallback Key (Choose at least one)
 OPENROUTER_API_KEY=your_openrouter_api_key_here
 GEMINI_API_KEY=your_gemini_api_key_here
@@ -238,6 +245,30 @@ $$\text{Overall Score} = (S \times 0.40) + (E \times 0.25) + (\text{Edu} \times 
 
 ---
 
+## 🗺️ Pages & Site Structure
+
+| Route | Description |
+| :--- | :--- |
+| `/` | Interactive landing page with feature deep dives, FAQs, and sample evaluations |
+| `/app` | Live analysis workbench with resume upload, JD input, and manuscript viewer |
+| `/contact` | Direct inquiries desk with subject routing, team details, and dispatch form |
+| `/privacy` | Privacy policy detailing client-side storage and ephemeral server parsing |
+| `/terms` | Terms of service and open-source usage policies |
+| `/sitemap.xml` | Dynamic XML sitemap for search engine discovery |
+| `/robots.txt` | Crawler access rules and sitemap indexing directives |
+
+---
+
+## 📬 Contact & Support
+
+For technical inquiries, bug reports, feature suggestions, and open-source collaboration:
+
+- **Email**: [subrato213432@gmail.com](mailto:subrato213432@gmail.com)
+- **Contact Desk**: Visit [`/contact`](https://resurox.app/contact) in the web application.
+- **Location**: Jharkhand, India
+
+---
+
 ## 🤝 Contribution Guide
 
 We welcome contributions! Please adhere to the following workflow:
@@ -286,7 +317,19 @@ npm run build
 
 ---
 
+## 👥 Maintainers & Credits
+
+Built and maintained with pride by:
+
+- **[CodeItAlone](https://github.com/CodeItAlone)**
+- **[Srijal-io](https://github.com/Srijal-io)**
+
+GitHub Repository: **[https://github.com/Srijal-io/Resurox](https://github.com/Srijal-io/Resurox)**
+
+---
+
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
+
 
