@@ -12,7 +12,7 @@ export function SiteHeader({ className = '' }) {
         {/* Left Branding: Logo + Wordmark + Version Badge */}
         <div className="flex items-center space-x-3 sm:space-x-4">
           <Link href="/" className="flex items-center gap-2 text-inherit no-underline">
-            <Logo size={72} showWordmark={true} priority={true} />
+            <Logo size={52} showWordmark={true} priority={true} />
           </Link>
           <VersionBadge />
         </div>

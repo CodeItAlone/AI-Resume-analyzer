@@ -112,20 +112,21 @@ export const ResuroxLogo: React.FC<ResuroxLogoProps> = ({
     );
   }
 
-  // 4. Combined / Primary: Unified R+Leaf + Resurox + EDIT ANALYZE ADVANCE
+  // 4. Combined / Primary: Unified R+Quill + Resurox Serif
   return (
     <div
       onClick={onClick}
       className={`relative inline-flex items-center justify-start select-none shrink-0 ${onClick ? 'cursor-pointer' : ''} ${className}`}
-      style={{ height: sizeConfig.height, width: Math.round(sizeConfig.height * 3.0) }}
+      style={{ height: sizeConfig.height, width: Math.round(sizeConfig.height * 4.1) }}
     >
       <Image
-        src="/branding/resurox-logo.png"
-        alt="Resurox — Edit • Analyze • Advance"
-        width={Math.round(sizeConfig.height * 3.0)}
+        src="/branding/resurox-logo-v3.png"
+        alt="Resurox"
+        width={Math.round(sizeConfig.height * 4.1)}
         height={sizeConfig.height}
         className="object-contain w-full h-full"
         priority={priority}
+        unoptimized={true}
       />
     </div>
   );
