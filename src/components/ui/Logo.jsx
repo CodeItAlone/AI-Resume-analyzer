@@ -1,10 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 
-export function Logo({ size = 66, showWordmark = true, className = '', priority = false }) {
-  // Primary brand logo: unified R-Leaf + Resurox + EDIT ANALYZE ADVANCE horizontal graphic
+export function Logo({ size = 52, showWordmark = true, className = '', priority = false }) {
+  // Primary brand logo: unified R-Quill + Resurox serif horizontal graphic
   const height = size;
-  const width = Math.round(height * 3.0);
+  const width = Math.round(height * 4.1);
 
   if (!showWordmark) {
     return (
@@ -13,12 +13,13 @@ export function Logo({ size = 66, showWordmark = true, className = '', priority 
         style={{ width: size, height: size }}
       >
         <Image
-          src="/branding/resurox-mark.png"
+          src="/branding/resurox-mark-v3.png"
           alt="Resurox"
           width={size}
           height={size}
           className="object-contain w-full h-full drop-shadow-sm"
           priority={priority}
+          unoptimized={true}
         />
       </div>
     );
@@ -30,12 +31,13 @@ export function Logo({ size = 66, showWordmark = true, className = '', priority 
       style={{ height, width }}
     >
       <Image
-        src="/branding/resurox-logo.png"
-        alt="Resurox — Edit • Analyze • Advance"
+        src="/branding/resurox-logo-v3.png"
+        alt="Resurox"
         width={width}
         height={height}
         className="object-contain w-full h-full"
         priority={priority}
+        unoptimized={true}
       />
     </div>
   );
