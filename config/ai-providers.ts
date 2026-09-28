@@ -90,9 +90,9 @@ export const DEFAULT_PROVIDER_REGISTRY: Record<string, ProviderRegistryEntry> = 
     baseUrl: 'https://api.groq.com/openai/v1',
     apiKeyEnv: 'GROQ_API_KEY',
     models: {
-      resume: 'llama-3.3-70b-specdec', // TODO_OWNER: Verify active Groq model ID
-      job: 'llama-3.3-70b-specdec',
-      explain: 'llama-3.3-70b-specdec',
+      resume: 'qwen/qwen3.8-27b',
+      job: 'qwen/qwen3.8-27b',
+      explain: 'qwen/qwen3.8-27b',
     },
     free: true,
     acceptsPersonalData: true, // TODO_OWNER: Read terms and set true if personal data permitted

@@ -19,6 +19,7 @@ import { extractServerIdentifiers, minimizePiiForAiProvider } from '../security/
 import { calculateCallCostMicroDollars } from '../security/budget';
 import { getServerConfig } from '../config';
 import { PipelineError } from './errors';
+import { layaClient } from '../laya/client';
 
 export interface AnalysisPipelineOptions {
   file: File;
@@ -123,11 +124,34 @@ export async function runAnalysisPipeline(
 
   logger.info('Document text extracted successfully', { requestId, textLength: rawResumeText.length, durationMs: extractDurationMs });
 
+  // 2.5 Laya Pre-Flight Input Guardrail (Plan §2.1)
+  const [layaResumeGuard, layaJdGuard] = await Promise.all([
+    layaClient.runGuardrail(rawResumeText, 'resume', requestId),
+    layaClient.runGuardrail(rawJd, 'jd', requestId),
+  ]);
+
+  const layaGuardPassed = layaResumeGuard.passed && layaJdGuard.passed;
+  if (!layaGuardPassed) {
+    if (config.LAYA_GUARDRAIL_MODE === 'hard-block') {
+      if (layaResumeGuard.isPromptInjection || layaJdGuard.isPromptInjection) {
+        throw new PipelineError('PROMPT_INJECTION_DETECTED', 'Prompt injection payload detected in input document or job description.');
+      }
+      throw new PipelineError('GARBAGE_PAYLOAD_DETECTED', layaResumeGuard.rejectionReason || layaJdGuard.rejectionReason || 'Invalid document content.');
+    } else {
+      logger.warn(`[Laya Guardrail] Content flagged in soft-flag mode`, {
+        requestId,
+        resumeGuard: layaResumeGuard,
+        jdGuard: layaJdGuard,
+        mode: config.LAYA_GUARDRAIL_MODE,
+      });
+    }
+  }
+
   // SEC-11: Pre-extract identifiers before redacting PII
   const serverIdentifiers = extractServerIdentifiers(rawResumeText);
   const piiRedactedResumeText = minimizePiiForAiProvider(rawResumeText);
 
-  // 3. Parallel AI Parsing (Resume || Job Description) with safe fallbacks (A3, A7)
+  // 3. Parallel AI Parsing & Laya Structured Field Extraction (Plan §2.2)
   let candidateProfile: CandidateProfile;
   let jobRequirementModel: JobRequirementModel;
   let usedResumeHeuristic = false;
@@ -137,9 +161,10 @@ export async function runAnalysisPipeline(
 
   const tParseStart = Date.now();
 
-  const [resumeResult, jobResult] = await Promise.allSettled([
-    extractResume(piiRedactedResumeText, ctx),
-    extractJob(rawJd, ctx),
+  const [resumeResult, jobResult, layaExtraction] = await Promise.all([
+    extractResume(piiRedactedResumeText, ctx).then((v) => ({ status: 'fulfilled' as const, value: v })).catch((e) => ({ status: 'rejected' as const, reason: e })),
+    extractJob(rawJd, ctx).then((v) => ({ status: 'fulfilled' as const, value: v })).catch((e) => ({ status: 'rejected' as const, reason: e })),
+    layaClient.extractStructuredFields(rawResumeText, requestId),
   ]);
 
   // If both stage extractions fail due to infrastructure/service busy or auth errors, throw PipelineError directly
@@ -258,6 +283,17 @@ export async function runAnalysisPipeline(
   if (config.ENABLE_GITHUB_ENRICHMENT && targetGithub) {
     try {
       githubRepos = await fetchGitHubPublicEvidence(targetGithub);
+      // Laya GitHub Evidence Guardrail Check (Plan §2.4)
+      const ghCombined = githubRepos.map((r) => `${r.name} ${r.description || ''}`).join(' ');
+      if (ghCombined.trim()) {
+        const ghGuard = await layaClient.runGuardrail(ghCombined, 'github', requestId);
+        if (!ghGuard.passed) {
+          logger.warn('Laya Guardrail flagged GitHub enrichment content', { requestId, isPromptInjection: ghGuard.isPromptInjection });
+          if (config.LAYA_GUARDRAIL_MODE === 'hard-block' || ghGuard.isPromptInjection) {
+            githubRepos = []; // Strip untrusted external content
+          }
+        }
+      }
       logger.info('GitHub evidence enriched', { requestId, repoCount: githubRepos.length });
     } catch (ghErr) {
       logger.warn('GitHub enrichment failed non-fatally', { requestId, error: ghErr instanceof Error ? ghErr.message : String(ghErr) });
@@ -341,9 +377,10 @@ export async function runAnalysisPipeline(
   }
   const explainDurationMs = Date.now() - tExplainStart;
 
-  // 8. Confidence computation (A3)
+  // 8. Confidence computation with Laya confidence gate (Plan §2.3)
+  const layaConfidenceCheck = layaClient.checkConfidenceThreshold(layaResumeGuard, layaExtraction);
   let confidence: AnalysisMeta['confidence'] = 'high';
-  if (usedResumeHeuristic || usedJobHeuristic) {
+  if (usedResumeHeuristic || usedJobHeuristic || layaConfidenceCheck.isLowConfidence) {
     confidence = 'limited';
   } else if (groundingDropRate >= 0.20) {
     confidence = 'medium';
@@ -383,6 +420,20 @@ export async function runAnalysisPipeline(
       pipelineVersion: '4.0.0',
       confidence,
       degraded: degradedList,
+      layaExtraction: {
+        seniorityLevel: layaExtraction.seniorityLevel,
+        primaryDomain: layaExtraction.primaryDomain,
+        hasQuantifiedAchievements: layaExtraction.hasQuantifiedAchievements,
+        resumeLengthAppropriate: layaExtraction.resumeLengthAppropriate,
+        confidence: layaExtraction.confidence,
+      },
+      layaGuard: {
+        passed: layaGuardPassed,
+        isPromptInjection: layaResumeGuard.isPromptInjection || layaJdGuard.isPromptInjection,
+        contentFlag: layaResumeGuard.contentFlag !== 'none' ? layaResumeGuard.contentFlag : layaJdGuard.contentFlag,
+        mode: config.LAYA_GUARDRAIL_MODE,
+        source: layaResumeGuard.source,
+      },
     },
     explanation: explanationFeedback,
     rawText: {

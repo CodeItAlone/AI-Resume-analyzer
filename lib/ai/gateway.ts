@@ -65,9 +65,7 @@ async function executeWithGateway<T>(
       : config.resolvedRoleOrders.explain;
 
   // 1. Mock Provider Execution (Dev / Test only)
-  const isMockMode =
-    providerList.some((p) => p.id === 'mock') ||
-    config.AI_PRIMARY_PROVIDER === 'mock';
+  const isMockMode = providerList.some((p) => p.id === 'mock');
 
   if (isMockMode) {
     if (config.NODE_ENV === 'production') {

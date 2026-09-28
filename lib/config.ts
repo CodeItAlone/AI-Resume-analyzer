@@ -64,6 +64,14 @@ const envSchema = z.object({
   GITHUB_TOKEN: z.string().optional(),
   LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('info'),
   DEBUG_AI_PAYLOADS: z.string().optional().transform((v) => v === 'true'),
+
+  // Laya Non-Autoregressive Typed-Decision Engine Configs
+  ENABLE_LAYA_GUARDRAIL: z.string().optional().transform((v) => v !== 'false'),
+  ENABLE_LAYA_EXTRACTION: z.string().optional().transform((v) => v !== 'false'),
+  LAYA_GUARDRAIL_MODE: z.enum(['soft-flag', 'hard-block']).default('soft-flag'),
+  LAYA_SERVICE_URL: z.string().optional(),
+  LAYA_CONFIDENCE_THRESHOLD: z.coerce.number().default(0.6),
+  LAYA_INJECTION_THRESHOLD: z.coerce.number().default(0.7),
 });
 
 export type ServerConfig = z.infer<typeof envSchema> & {
