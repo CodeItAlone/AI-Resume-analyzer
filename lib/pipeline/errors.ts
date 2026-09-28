@@ -18,6 +18,8 @@ export type PipelineErrorCode =
   | 'SERVICE_BUSY'
   | 'RATE_LIMITED'
   | 'BOT_CHECK_FAILED'
+  | 'PROMPT_INJECTION_DETECTED'
+  | 'GARBAGE_PAYLOAD_DETECTED'
   | 'ANALYSIS_FAILED';
 
 export interface SafeErrorMapping {
@@ -101,6 +103,14 @@ export const ERROR_MAPPING: Record<PipelineErrorCode, SafeErrorMapping> = {
   BOT_CHECK_FAILED: {
     httpStatus: 403,
     userMessage: 'Security check failed. Please verify you are human and try again.',
+  },
+  PROMPT_INJECTION_DETECTED: {
+    httpStatus: 400,
+    userMessage: 'The provided document or job description contains disallowed system instructions.',
+  },
+  GARBAGE_PAYLOAD_DETECTED: {
+    httpStatus: 422,
+    userMessage: 'The input payload is invalid, empty, or unreadable. Please check your submission.',
   },
   ANALYSIS_FAILED: {
     httpStatus: 500,

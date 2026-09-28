@@ -34,6 +34,20 @@ export interface AnalysisMeta {
   pipelineVersion: string;
   confidence: PipelineConfidence;
   degraded: DegradedReason[];
+  layaExtraction?: {
+    seniorityLevel: string;
+    primaryDomain: string;
+    hasQuantifiedAchievements: boolean;
+    resumeLengthAppropriate: string;
+    confidence: number;
+  };
+  layaGuard?: {
+    passed: boolean;
+    isPromptInjection: boolean;
+    contentFlag: string;
+    mode: 'soft-flag' | 'hard-block';
+    source: 'laya-model' | 'pattern-match-fallback';
+  };
 }
 
 export interface AnalysisResponse {
